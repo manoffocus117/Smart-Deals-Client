@@ -1,4 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @plugin "daisyui" {
-      themes: light --preferslight;
+      themes: light --default;
+}
+@plugin "daisyui/theme" {
+      name: "light";
+      default: true;
+      --color-secondary: rgb(98, 115, 130);
+}
+
+:root {
+      --gradient-color: linear-gradient(
+            to right,
+            rgb(99, 46, 227),
+            rgb(159, 98, 242)
+      );
+}
+
+body {
+      font-family: "Inter", sans-serif;
+}
+
+.primary-color {
+      background: var(--gradient-color);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+}
+
+.primary-background {
+      background: var(--gradient-color);
 }

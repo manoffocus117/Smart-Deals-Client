@@ -1,6 +1,6 @@
 import React from "react";
 import { RiMenu5Fill } from "react-icons/ri";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Header = () => {
       const links = (
@@ -27,7 +27,10 @@ const Header = () => {
             <header className="w-11/12 mx-auto">
                   <nav className="navbar">
                         <div className="navbar-start">
-                              <a className="text-xl">Smart Deals</a>
+                              <Link to={"/"} className="text-[2rem] font-bold">
+                                    Smart
+                                    <span className="primary-color">Deals</span>
+                              </Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
                               <ul className="menu gap-8 menu-horizontal px-1">
