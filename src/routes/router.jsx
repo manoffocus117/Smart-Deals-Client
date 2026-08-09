@@ -2,15 +2,20 @@ import React from "react";
 import { createBrowserRouter } from "react-router";
 import Root from "../layout/Root";
 import Hero from "../pages/Hero";
+import All_products from "../pages/All_products";
 
 const router = createBrowserRouter([
       {
             path: "/",
-            element: <Root />,
+            Component: Root,
             children: [
                   {
-                        path: "/",
-                        element: <Hero />,
+                        index: true,
+                        Component: Hero,
+                  },
+                  {
+                        path: "all-products",
+                        Component: All_products,
                   },
             ],
       },
