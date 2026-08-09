@@ -1,20 +1,37 @@
 import React from "react";
 import { RiMenu5Fill } from "react-icons/ri";
+import { NavLink } from "react-router";
 
 const Header = () => {
+      const links = (
+            <>
+                  <li>
+                        <NavLink to={"/"}>Home</NavLink>
+                  </li>
+                  <li>
+                        <NavLink to={"/all-products"}>All products</NavLink>
+                  </li>
+                  <li>
+                        <NavLink to={"/my-products"}>My products</NavLink>
+                  </li>
+                  <li>
+                        <NavLink to={"/my-bids"}>My Bids</NavLink>
+                  </li>
+                  <li>
+                        <NavLink to={"/create-product"}>Create Product</NavLink>
+                  </li>
+            </>
+      );
+
       return (
-            <header>
-                  <nav className="navbar bg-base-100 shadow-sm">
+            <header className="w-11/12 mx-auto">
+                  <nav className="navbar">
                         <div className="navbar-start">
                               <a className="text-xl">Smart Deals</a>
                         </div>
                         <div className="navbar-center hidden lg:flex">
                               <ul className="menu gap-8 menu-horizontal px-1">
-                                    <li>Home</li>
-                                    <li>All Products</li>
-                                    <li>My Products</li>
-                                    <li>My Bids</li>
-                                    <li>Create Product</li>
+                                    {links}
                               </ul>
                         </div>
                         <div className="navbar-end gap-3">
@@ -61,11 +78,7 @@ const Header = () => {
                                           className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow"
                                     >
                                           <ul className="menu gap-3 px-1">
-                                                <li>Home</li>
-                                                <li>All Products</li>
-                                                <li>My Products</li>
-                                                <li>My Bids</li>
-                                                <li>Create Product</li>
+                                                {links}
                                           </ul>
                                     </ul>
                               </div>
