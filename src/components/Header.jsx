@@ -24,7 +24,7 @@ const Header = () => {
       );
 
       return (
-            <header className="w-11/12 mx-auto">
+            <header className="w-11/12 mx-auto py-2">
                   <nav className="navbar p-0">
                         <div className="navbar-start">
                               <Link to={"/"} className="text-[2rem] font-bold">
@@ -84,6 +84,20 @@ const Header = () => {
                                           </ul>
                                     </ul>
                               </div>
+                              <NavLink
+                                    to={"/login"}
+                                    className={"primary-border"}
+                              >
+                                    Login
+                              </NavLink>
+                              <NavLink
+                                    to={"/register"}
+                                    className={
+                                          "primary-background rounded px-4 py-3 text-white"
+                                    }
+                              >
+                                    Register
+                              </NavLink>
                         </div>
                   </nav>
             </header>

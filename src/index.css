@@ -32,6 +32,18 @@ body {
       background: var(--gradient-color);
 }
 
+.primary-border {
+      border: 2px solid transparent;
+      border-radius: 4px;
+
+      background:
+            linear-gradient(white, white) padding-box,
+            linear-gradient(to right, rgb(99, 46, 227), rgb(159, 98, 242))
+                  border-box;
+
+      padding: 0.75rem 1rem;
+}
+
 .active {
       background: var(--gradient-color);
       background-clip: text;
