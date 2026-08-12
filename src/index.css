@@ -31,3 +31,11 @@ body {
 .primary-background {
       background: var(--gradient-color);
 }
+
+.active {
+      background: var(--gradient-color);
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      text-decoration: underline;
+}

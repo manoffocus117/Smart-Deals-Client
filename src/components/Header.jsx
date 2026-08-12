@@ -25,7 +25,7 @@ const Header = () => {
 
       return (
             <header className="w-11/12 mx-auto">
-                  <nav className="navbar">
+                  <nav className="navbar p-0">
                         <div className="navbar-start">
                               <Link to={"/"} className="text-[2rem] font-bold">
                                     Smart
@@ -33,7 +33,7 @@ const Header = () => {
                               </Link>
                         </div>
                         <div className="navbar-center hidden lg:flex">
-                              <ul className="menu gap-8 menu-horizontal px-1">
+                              <ul className="menu gap-8 menu-horizontal px-1 font-medium">
                                     {links}
                               </ul>
                         </div>
@@ -54,16 +54,15 @@ const Header = () => {
                                           </div>
                                           <ul
                                                 tabIndex="-1"
-                                                className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow"
+                                                className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow font-medium"
                                           >
                                                 <li>
-                                                      <a>Profile</a>
+                                                      <NavLink to={"/profile"}>
+                                                            Profile
+                                                      </NavLink>
                                                 </li>
                                                 <li>
-                                                      <a>Settings</a>
-                                                </li>
-                                                <li>
-                                                      <a>Logout</a>
+                                                      <button>Logout</button>
                                                 </li>
                                           </ul>
                                     </div>
@@ -80,7 +79,7 @@ const Header = () => {
                                           tabIndex="-1"
                                           className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow"
                                     >
-                                          <ul className="menu gap-3 px-1">
+                                          <ul className="menu gap-3 px-1 font-medium">
                                                 {links}
                                           </ul>
                                     </ul>
