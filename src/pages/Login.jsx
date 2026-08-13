@@ -4,7 +4,7 @@ import { Link } from "react-router";
 const Login = () => {
       return (
             <section className="w-11/12 mx-auto h-screen flex flex-col items-center justify-center">
-                  <form className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-3">
+                  <form className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2">
                         <div className="space-y-3">
                               <h1 className="text-4xl font-semibold text-center">
                                     Login
@@ -19,8 +19,12 @@ const Login = () => {
                                     </Link>
                               </p>
                         </div>
+
+                        {/* email field */}
                         <fieldset className="fieldset">
-                              <label className="label">Email</label>
+                              <label className="label text-[1rem] font-medium">
+                                    Email
+                              </label>
                               <input
                                     type="email"
                                     className="input validator w-full"
@@ -30,8 +34,11 @@ const Login = () => {
                               <p className="validator-hint hidden">Required</p>
                         </fieldset>
 
+                        {/* password field */}
                         <fieldset className="fieldset">
-                              <label className="label">Password</label>
+                              <label className="label text-[1rem] font-medium">
+                                    Password
+                              </label>
                               <input
                                     type="password"
                                     className="input validator w-full"
@@ -42,20 +49,26 @@ const Login = () => {
                                     Required
                               </span>
                         </fieldset>
-                        <div>
-                              <a className="link link-hover">
+
+                        {/* forget password field */}
+                        <div className="-mt-2">
+                              <a className="link link-hover text-[1rem]">
                                     Forgot password?
                               </a>
                         </div>
 
                         <button
-                              className="btn primary-background text-white font-medium"
+                              className="btn primary-background text-[1rem] text-white font-medium mt-2"
                               type="submit"
                         >
                               Login
                         </button>
-                        <div className="divider w-full">OR</div>
-                        <button className="btn bg-white text-black border-[#e5e5e5] w-full">
+
+                        <div className="divider w-full text-[1rem] font-semibold py-6">
+                              OR
+                        </div>
+
+                        <button className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full">
                               <svg
                                     aria-label="Google logo"
                                     width="16"
