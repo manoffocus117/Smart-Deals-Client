@@ -16,97 +16,102 @@ const Register = () => {
 
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
-                  <form
-                        onSubmit={handle_register_form}
-                        className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2"
-                  >
-                        <div className="space-y-3">
-                              <h1 className="text-4xl font-semibold text-center">
-                                    Register
-                              </h1>
-                              <p className="text-[1rem] text-center">
-                                    Already have an account?{" "}
-                                    <Link
-                                          to={"/login"}
-                                          className="primary-color"
-                                    >
-                                          Login Now
-                                    </Link>
-                              </p>
-                        </div>
-
-                        {/* name field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Name
-                              </label>
-                              <input
-                                    name="name"
-                                    type="text"
-                                    className="input validator w-full outline-none"
-                                    placeholder="name"
-                                    required
-                              />
-                              <p className="validator-hint hidden">Required</p>
-                        </fieldset>
-
-                        {/* email field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Email
-                              </label>
-                              <input
-                                    name="email"
-                                    type="email"
-                                    className="input validator w-full outline-none"
-                                    placeholder="Email"
-                                    required
-                              />
-                              <p className="validator-hint hidden">Required</p>
-                        </fieldset>
-
-                        {/* image url field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Image URL
-                              </label>
-                              <input
-                                    name="image_url"
-                                    type="url"
-                                    className="input validator w-full outline-none"
-                                    placeholder="Image URL"
-                                    required
-                              />
-                              <span className="validator-hint hidden">
-                                    Required
-                              </span>
-                        </fieldset>
-
-                        {/* password field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Password
-                              </label>
-                              <input
-                                    name="password"
-                                    type="password"
-                                    className="input validator w-full outline-none"
-                                    placeholder="Password"
-                                    required
-                              />
-                              <span className="validator-hint hidden">
-                                    Required
-                              </span>
-                        </fieldset>
-
-                        {/* submit button */}
-                        <button
-                              className="btn primary-background text-[1rem] text-white font-medium mt-2"
-                              type="submit"
+                  <div className="bg-white w-123 border-base-300 rounded-box border p-10 space-y-2">
+                        <form
+                              onSubmit={handle_register_form}
+                              className="fieldset"
                         >
-                              Register
-                        </button>
+                              <div className="space-y-3">
+                                    <h1 className="text-4xl font-semibold text-center">
+                                          Register
+                                    </h1>
+                                    <p className="text-[1rem] text-center">
+                                          Already have an account?{" "}
+                                          <Link
+                                                to={"/login"}
+                                                className="primary-color"
+                                          >
+                                                Login Now
+                                          </Link>
+                                    </p>
+                              </div>
 
+                              {/* name field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Name
+                                    </label>
+                                    <input
+                                          name="name"
+                                          type="text"
+                                          className="input validator w-full outline-none"
+                                          placeholder="name"
+                                          required
+                                    />
+                                    <p className="validator-hint hidden">
+                                          Required
+                                    </p>
+                              </fieldset>
+
+                              {/* email field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Email
+                                    </label>
+                                    <input
+                                          name="email"
+                                          type="email"
+                                          className="input validator w-full outline-none"
+                                          placeholder="Email"
+                                          required
+                                    />
+                                    <p className="validator-hint hidden">
+                                          Required
+                                    </p>
+                              </fieldset>
+
+                              {/* image url field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Image URL
+                                    </label>
+                                    <input
+                                          name="image_url"
+                                          type="url"
+                                          className="input validator w-full outline-none"
+                                          placeholder="Image URL"
+                                          required
+                                    />
+                                    <span className="validator-hint hidden">
+                                          Required
+                                    </span>
+                              </fieldset>
+
+                              {/* password field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Password
+                                    </label>
+                                    <input
+                                          name="password"
+                                          type="password"
+                                          className="input validator w-full outline-none"
+                                          placeholder="Password"
+                                          required
+                                    />
+                                    <span className="validator-hint hidden">
+                                          Required
+                                    </span>
+                              </fieldset>
+
+                              {/* submit button */}
+                              <button
+                                    className="btn primary-background text-[1rem] text-white font-medium mt-2"
+                                    type="submit"
+                              >
+                                    Register
+                              </button>
+                        </form>
                         <div className="divider w-full text-[1rem] font-semibold py-6">
                               OR
                         </div>
@@ -145,7 +150,7 @@ const Register = () => {
                               </svg>
                               Register with Google
                         </button>
-                  </form>
+                  </div>
             </section>
       );
 };
