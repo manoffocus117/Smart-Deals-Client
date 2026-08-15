@@ -2,9 +2,21 @@ import React from "react";
 import { Link } from "react-router";
 
 const Register = () => {
+      const handle_register_form = (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            const image_url = form.image_url.value;
+            const password = form.password.value;
+            event.target.reset();
+      };
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
-                  <form className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2">
+                  <form
+                        onSubmit={handle_register_form}
+                        className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2"
+                  >
                         <div className="space-y-3">
                               <h1 className="text-4xl font-semibold text-center">
                                     Register
@@ -26,8 +38,9 @@ const Register = () => {
                                     Name
                               </label>
                               <input
+                                    name="name"
                                     type="text"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="name"
                                     required
                               />
@@ -40,8 +53,9 @@ const Register = () => {
                                     Email
                               </label>
                               <input
+                                    name="email"
                                     type="email"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="Email"
                                     required
                               />
@@ -54,8 +68,9 @@ const Register = () => {
                                     Image URL
                               </label>
                               <input
+                                    name="image_url"
                                     type="url"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="Image URL"
                                     required
                               />
@@ -70,8 +85,9 @@ const Register = () => {
                                     Password
                               </label>
                               <input
+                                    name="password"
                                     type="password"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="Password"
                                     required
                               />
@@ -80,6 +96,7 @@ const Register = () => {
                               </span>
                         </fieldset>
 
+                        {/* submit button */}
                         <button
                               className="btn primary-background text-[1rem] text-white font-medium mt-2"
                               type="submit"
@@ -91,6 +108,7 @@ const Register = () => {
                               OR
                         </div>
 
+                        {/* register with google button */}
                         <button className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full">
                               <svg
                                     aria-label="Google logo"

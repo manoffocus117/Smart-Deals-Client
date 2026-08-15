@@ -2,9 +2,19 @@ import React from "react";
 import { Link } from "react-router";
 
 const Login = () => {
+      const handle_login_form = (event) => {
+            event.preventDefault();
+            const form = event.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            event.target.reset();
+      };
       return (
             <section className="w-11/12 mx-auto h-screen flex flex-col items-center justify-center">
-                  <form className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2">
+                  <form
+                        onSubmit={handle_login_form}
+                        className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2"
+                  >
                         <div className="space-y-3">
                               <h1 className="text-4xl font-semibold text-center">
                                     Login
@@ -26,8 +36,9 @@ const Login = () => {
                                     Email
                               </label>
                               <input
+                                    name="email"
                                     type="email"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="Email"
                                     required
                               />
@@ -40,8 +51,9 @@ const Login = () => {
                                     Password
                               </label>
                               <input
+                                    name="password"
                                     type="password"
-                                    className="input validator w-full"
+                                    className="input validator w-full outline-none"
                                     placeholder="Password"
                                     required
                               />
@@ -52,11 +64,12 @@ const Login = () => {
 
                         {/* forget password field */}
                         <div className="-mt-2">
-                              <a className="link link-hover text-[1rem]">
+                              <button className="link link-hover text-[1rem]">
                                     Forgot password?
-                              </a>
+                              </button>
                         </div>
 
+                        {/* submit button */}
                         <button
                               className="btn primary-background text-[1rem] text-white font-medium mt-2"
                               type="submit"
@@ -68,6 +81,7 @@ const Login = () => {
                               OR
                         </div>
 
+                        {/* sign in with google button */}
                         <button className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full">
                               <svg
                                     aria-label="Google logo"
