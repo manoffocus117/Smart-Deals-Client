@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
 
 const Register = () => {
@@ -11,6 +11,9 @@ const Register = () => {
             const password = form.password.value;
             event.target.reset();
       };
+
+      const handle_register_with_google = () => {};
+
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
                   <form
