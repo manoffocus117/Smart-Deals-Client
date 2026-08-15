@@ -5,7 +5,7 @@ import { Auth_context } from "../context/Auth_context";
 
 const Header = () => {
       // user
-      const { user } = use(Auth_context);
+      const { user, sign_out_user } = use(Auth_context);
 
       // navbar links
       const links = (
@@ -34,6 +34,17 @@ const Header = () => {
                   </li>
             </>
       );
+
+      // handler for sign out user
+      const handle_sign_out = () => {
+            sign_out_user()
+                  .then((result) => {
+                        alert("user signed out successfully");
+                  })
+                  .catch((error) => {
+                        alert(error.message);
+                  });
+      };
 
       return (
             <header className="w-11/12 mx-auto py-2">
@@ -86,7 +97,11 @@ const Header = () => {
                                                                   </NavLink>
                                                             </li>
                                                             <li>
-                                                                  <button>
+                                                                  <button
+                                                                        onClick={
+                                                                              handle_sign_out
+                                                                        }
+                                                                  >
                                                                         Logout
                                                                   </button>
                                                             </li>
@@ -114,22 +129,22 @@ const Header = () => {
                               ) : (
                                     // login & sign up button
                                     <>
-                                          <NavLink
+                                          <Link
                                                 to={"/login"}
                                                 className={
                                                       "gradient-btn px-4 py-3"
                                                 }
                                           >
                                                 Login
-                                          </NavLink>
-                                          <NavLink
+                                          </Link>
+                                          <Link
                                                 to={"/register"}
                                                 className={
                                                       "primary-background rounded px-4 py-3 text-white"
                                                 }
                                           >
                                                 Register
-                                          </NavLink>
+                                          </Link>
                                     </>
                               )}
                         </div>
