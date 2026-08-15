@@ -1,7 +1,10 @@
-import React from "react";
+import React, { use } from "react";
 import { Link } from "react-router";
+import { Auth_context } from "../context/Auth_context";
 
 const Login = () => {
+      const { sign_in_with_google } = use(Auth_context);
+
       const handle_login_form = (event) => {
             event.preventDefault();
             const form = event.target;
@@ -9,80 +12,98 @@ const Login = () => {
             const password = form.password.value;
             event.target.reset();
       };
+
+      // handler for google sign in
+      const handle_google_sign_in = () => {
+            sign_in_with_google()
+                  .then((result) => {
+                        alert("user sign in successful");
+                  })
+                  .catch((error) => {
+                        alert(error.message);
+                  });
+      };
+
       return (
             <section className="w-11/12 mx-auto h-screen flex flex-col items-center justify-center">
-                  <form
-                        onSubmit={handle_login_form}
-                        className="fieldset bg-white border-base-300 rounded-box w-123 border p-10 space-y-2"
-                  >
-                        <div className="space-y-3">
-                              <h1 className="text-4xl font-semibold text-center">
-                                    Login
-                              </h1>
-                              <p className="text-[1rem] text-center">
-                                    Don't have an account?{" "}
-                                    <Link
-                                          to={"/register"}
-                                          className="primary-color"
-                                    >
-                                          Register Now
-                                    </Link>
-                              </p>
-                        </div>
-
-                        {/* email field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Email
-                              </label>
-                              <input
-                                    name="email"
-                                    type="email"
-                                    className="input validator w-full outline-none"
-                                    placeholder="Email"
-                                    required
-                              />
-                              <p className="validator-hint hidden">Required</p>
-                        </fieldset>
-
-                        {/* password field */}
-                        <fieldset className="fieldset">
-                              <label className="label text-[1rem] font-medium">
-                                    Password
-                              </label>
-                              <input
-                                    name="password"
-                                    type="password"
-                                    className="input validator w-full outline-none"
-                                    placeholder="Password"
-                                    required
-                              />
-                              <span className="validator-hint hidden">
-                                    Required
-                              </span>
-                        </fieldset>
-
-                        {/* forget password field */}
-                        <div className="-mt-2">
-                              <button className="link link-hover text-[1rem]">
-                                    Forgot password?
-                              </button>
-                        </div>
-
-                        {/* submit button */}
-                        <button
-                              className="btn primary-background text-[1rem] text-white font-medium mt-2"
-                              type="submit"
+                  <div className="bg-white border-base-300 rounded-box w-123 border p-10 space-y-2">
+                        <form
+                              onSubmit={handle_login_form}
+                              className="fieldset "
                         >
-                              Login
-                        </button>
+                              <div className="space-y-3">
+                                    <h1 className="text-4xl font-semibold text-center">
+                                          Login
+                                    </h1>
+                                    <p className="text-[1rem] text-center">
+                                          Don't have an account?{" "}
+                                          <Link
+                                                to={"/register"}
+                                                className="primary-color"
+                                          >
+                                                Register Now
+                                          </Link>
+                                    </p>
+                              </div>
 
+                              {/* email field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Email
+                                    </label>
+                                    <input
+                                          name="email"
+                                          type="email"
+                                          className="input validator w-full outline-none"
+                                          placeholder="Email"
+                                          required
+                                    />
+                                    <p className="validator-hint hidden">
+                                          Required
+                                    </p>
+                              </fieldset>
+
+                              {/* password field */}
+                              <fieldset className="fieldset">
+                                    <label className="label text-[1rem] font-medium">
+                                          Password
+                                    </label>
+                                    <input
+                                          name="password"
+                                          type="password"
+                                          className="input validator w-full outline-none"
+                                          placeholder="Password"
+                                          required
+                                    />
+                                    <span className="validator-hint hidden">
+                                          Required
+                                    </span>
+                              </fieldset>
+
+                              {/* forget password field */}
+                              <div className="-mt-2">
+                                    <button className="link link-hover text-[1rem]">
+                                          Forgot password?
+                                    </button>
+                              </div>
+
+                              {/* submit button */}
+                              <button
+                                    className="btn primary-background text-[1rem] text-white font-medium mt-2"
+                                    type="submit"
+                              >
+                                    Login
+                              </button>
+                        </form>
                         <div className="divider w-full text-[1rem] font-semibold py-6">
                               OR
                         </div>
 
                         {/* sign in with google button */}
-                        <button className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full">
+                        <button
+                              onClick={handle_google_sign_in}
+                              className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full"
+                        >
                               <svg
                                     aria-label="Google logo"
                                     width="16"
@@ -115,7 +136,7 @@ const Login = () => {
                               </svg>
                               Login with Google
                         </button>
-                  </form>
+                  </div>
             </section>
       );
 };
