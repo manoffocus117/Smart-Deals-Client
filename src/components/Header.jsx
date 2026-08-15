@@ -86,7 +86,7 @@ const Header = () => {
                               </div>
                               <NavLink
                                     to={"/login"}
-                                    className={"primary-border"}
+                                    className={"gradient-btn px-4 py-3"}
                               >
                                     Login
                               </NavLink>
