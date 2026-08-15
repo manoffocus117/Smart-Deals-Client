@@ -1,5 +1,6 @@
 import React, { use } from "react";
 import { Link } from "react-router";
+import { Auth_context } from "../context/Auth_context";
 
 const Register = () => {
       const handle_register_form = (event) => {
@@ -12,7 +13,19 @@ const Register = () => {
             event.target.reset();
       };
 
-      const handle_register_with_google = () => {};
+      // auth context
+      const { sign_in_with_google } = use(Auth_context);
+
+      // handler for google sign in
+      const handle_google_sign_in = () => {
+            sign_in_with_google()
+                  .then((result) => {
+                        console.log(result.user);
+                  })
+                  .catch((error) => {
+                        console.log(error);
+                  });
+      };
 
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
@@ -117,7 +130,10 @@ const Register = () => {
                         </div>
 
                         {/* register with google button */}
-                        <button className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full">
+                        <button
+                              onClick={handle_google_sign_in}
+                              className="btn bg-white text-black text-[1rem] border-[#e5e5e5] w-full"
+                        >
                               <svg
                                     aria-label="Google logo"
                                     width="16"
