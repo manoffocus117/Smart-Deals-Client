@@ -8,6 +8,7 @@ import My_bids from "../pages/My_bids";
 import Create_product from "../pages/Create_product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Private_route from "../providers/Private_route";
 
 const router = createBrowserRouter([
       {
@@ -24,11 +25,19 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "my-products",
-                        Component: My_products,
+                        element: (
+                              <Private_route>
+                                    <My_products />
+                              </Private_route>
+                        ),
                   },
                   {
                         path: "my-bids",
-                        Component: My_bids,
+                        element: (
+                              <Private_route>
+                                    <My_bids />
+                              </Private_route>
+                        ),
                   },
                   {
                         path: "create-product",
