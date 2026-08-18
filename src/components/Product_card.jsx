@@ -3,7 +3,7 @@ import React from "react";
 const Product_card = ({ product }) => {
       const { title, price_min, price_max, image, usage } = product;
       return (
-            <div className="card bg-base-100 w-110 mx-auto shadow-sm">
+            <div className="card bg-base-100 lg:w-110 md:w-80 mx-auto shadow-sm">
                   <figure className="m-4 h-72 rounded-xl">
                         <img
                               src={image}

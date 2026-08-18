@@ -3,9 +3,9 @@ import { FaRegCopyright } from "react-icons/fa6";
 
 const Footer = () => {
       return (
-            <footer className="flex flex-col sm:footer-horizontal bg-[rgb(0,25,49)] text-white">
-                  <div className="w-11/12 mx-auto flex flex-row justify-between py-20">
-                        <aside className="w-87.5 space-y-3">
+            <footer className="bg-[rgb(0,25,49)] text-white flex flex-col gap-5">
+                  <div className="w-11/12 mx-auto p-5 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 gap-8">
+                        <aside className="lg:w-87.5 space-y-3">
                               <h1 className="text-4xl font-medium">
                                     Smart
                                     <span className="primary-color">Deals</span>
@@ -16,21 +16,21 @@ const Footer = () => {
                                     across Bangladesh.
                               </p>
                         </aside>
-                        <div className="flex flex-col gap-5">
+                        <div className="flex flex-col md:gap-5 sm:gap-2">
                               <h6 className="footer-title">Quick Links</h6>
                               <a className="link link-hover">All Products</a>
                               <a className="link link-hover">Dashboard</a>
                               <a className="link link-hover">Login</a>
                               <a className="link link-hover">Register</a>
                         </div>
-                        <div className="flex flex-col gap-5">
+                        <div className="flex flex-col md:gap-5 sm:gap-2">
                               <h6 className="footer-title">Categories</h6>
                               <a className="link link-hover">Electronics</a>
                               <a className="link link-hover">Fashion</a>
                               <a className="link link-hover">Home & Living</a>
                               <a className="link link-hover">Groceries</a>
                         </div>
-                        <div className="flex flex-col gap-5">
+                        <div className="flex flex-col md:gap-5 sm:gap-2">
                               <h6 className="footer-title">
                                     Contact & Support
                               </h6>
@@ -83,16 +83,18 @@ const Footer = () => {
                               </div>
                         </div>
                   </div>
-                  <p className="flex items-center gap-2 justify-center text-center pb-8">
+                  <div className="w-2/3 md:w-11/12 mx-auto text-center pb-8 flex flex-row items-center justify-center gap-2">
                         <FaRegCopyright />
-                        All right reserved 2026 by{" "}
-                        <a
-                              href="https://github.com/manoffocus117/"
-                              className="primary-color font-medium underline"
-                        >
-                              MD Saifur Rahman
-                        </a>
-                  </p>
+                        <p>
+                              All right reserved 2026 by{" "}
+                              <a
+                                    href="https://github.com/manoffocus117/"
+                                    className="primary-color font-medium underline"
+                              >
+                                    MD Saifur Rahman
+                              </a>
+                        </p>
+                  </div>
             </footer>
       );
 };

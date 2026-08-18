@@ -85,7 +85,7 @@ const Header = () => {
                                                       </div>
                                                       <ul
                                                             tabIndex="-1"
-                                                            className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow font-medium"
+                                                            className="menu menu-sm dropdown-content bg-base-100 rounded z-10 mt-5 w-52 p-2 shadow font-medium"
                                                       >
                                                             <li>
                                                                   <NavLink
@@ -112,13 +112,13 @@ const Header = () => {
                                                 <div
                                                       tabIndex={0}
                                                       role="button"
-                                                      className="btn text-2xl border-none p-0 lg:hidden"
+                                                      className="p-2 text-2xl border border-gray-400 lg:p-0 rounded-full lg:hidden"
                                                 >
                                                       <RiMenu5Fill />
                                                 </div>
                                                 <ul
                                                       tabIndex="-1"
-                                                      className="menu menu-sm dropdown-content bg-base-100 rounded z-1 mt-5 w-52 p-2 shadow"
+                                                      className="menu menu-sm dropdown-content bg-base-100 rounded z-10 mt-5 w-52 p-2 shadow"
                                                 >
                                                       <ul className="menu gap-3 px-1 font-medium">
                                                             {links}
