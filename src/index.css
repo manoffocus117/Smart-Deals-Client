@@ -31,6 +31,7 @@ body {
 
 .primary-background {
       background: var(--gradient-color);
+      color: #ffffff;
 }
 
 .gradient-btn {
@@ -83,11 +84,4 @@ body {
       -webkit-text-fill-color: transparent;
       display: inline-block;
       text-decoration: underline;
-}
-
-.hero-bg {
-      background-image: url(../src/assets/Hero-bg.jpg);
-      background-size: contain;
-      background-repeat: no-repeat;
-      height: 100vh;
 }
