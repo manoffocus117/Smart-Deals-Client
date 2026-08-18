@@ -3,6 +3,10 @@ import { Link } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 
 const Register = () => {
+      // auth context
+      const { sign_in_with_google } = use(Auth_context);
+      const navigate = useNavigate();
+
       const handle_register_form = (event) => {
             event.preventDefault();
             const form = event.target;
@@ -13,17 +17,15 @@ const Register = () => {
             event.target.reset();
       };
 
-      // auth context
-      const { sign_in_with_google } = use(Auth_context);
-
       // handler for google sign in
       const handle_google_sign_in = () => {
             sign_in_with_google()
                   .then((result) => {
-                        console.log(result.user);
+                        alert("user created");
+                        navigate("/");
                   })
                   .catch((error) => {
-                        console.log(error);
+                        alert(error.message);
                   });
       };
 

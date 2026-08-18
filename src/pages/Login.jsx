@@ -1,9 +1,10 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 
 const Login = () => {
       const { sign_in_with_google } = use(Auth_context);
+      const navigate = useNavigate();
 
       const handle_login_form = (event) => {
             event.preventDefault();
@@ -18,6 +19,7 @@ const Login = () => {
             sign_in_with_google()
                   .then((result) => {
                         alert("user sign in successful");
+                        navigate("/");
                   })
                   .catch((error) => {
                         alert(error.message);
