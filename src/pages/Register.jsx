@@ -1,5 +1,5 @@
 import React, { use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 
 const Register = () => {
@@ -21,7 +21,23 @@ const Register = () => {
       const handle_google_sign_in = () => {
             sign_in_with_google()
                   .then((result) => {
-                        alert("user created");
+                        alert("user login or created");
+                        const new_user = {
+                              name: result.user.displayName,
+                              email: result.user.email,
+                              image: result.user.photoURL,
+                        };
+
+                        // create user in the database
+                        fetch("http://localhost:3000/users", {
+                              method: "POST",
+                              headers: {
+                                    "content-type": "application/json",
+                              },
+                              body: JSON.stringify(new_user),
+                        })
+                              .then((res) => res.json())
+                              .then((data) => alert("data after added", data));
                         navigate("/");
                   })
                   .catch((error) => {
