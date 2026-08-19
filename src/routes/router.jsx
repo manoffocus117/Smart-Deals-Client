@@ -10,6 +10,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Private_route from "../providers/Private_route";
 import Product_details from "./../pages/Product_details";
+import Loading from "../components/Loading";
 
 const router = createBrowserRouter([
       {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "product-details/:id",
+                        loader: ({ params }) =>
+                              fetch(
+                                    `http://localhost:3000/products/${params.id}`,
+                              ),
+                        hydrateFallbackElement: <Loading />,
                         Component: Product_details,
                   },
                   {
