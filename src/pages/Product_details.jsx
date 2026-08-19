@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { use, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link, useLoaderData } from "react-router";
+import { Auth_context } from "../context/Auth_context";
 
 const Product_details = () => {
       const product = useLoaderData();
@@ -25,12 +26,31 @@ const Product_details = () => {
 
       const bid_modal_ref = useRef(null);
 
+      const { user } = use(Auth_context);
+
       // handler for bid modal open
       const handle_modal_open = () => {
             bid_modal_ref.current.showModal();
       };
 
+      // handler for bid modal close
       const handle_modal_close = () => {
+            bid_modal_ref.current.close();
+      };
+
+      // handler for bid submit
+      const handle_bid_submit = (event) => {
+            event.preventDefault();
+
+            const form = event.target;
+            const name = form.name.value;
+            const email = form.email.value;
+            const image = form.buyer_image.value;
+            const price = form.bid_amount.value;
+            const contact = form.phone_number.value;
+
+            event.target.reset();
+            // close modal after form submit
             bid_modal_ref.current.close();
       };
 
@@ -154,6 +174,7 @@ const Product_details = () => {
                                     </span>
                               </h3>
                         </div>
+                        {/* place bid button */}
                         <button
                               className="btn primary-background w-full"
                               onClick={handle_modal_open}
@@ -169,7 +190,10 @@ const Product_details = () => {
                                     <h3 className="font-bold text-center text-2xl mb-4">
                                           Give Seller Your Offered Price
                                     </h3>
-                                    <form className="fieldset space-y-3">
+                                    <form
+                                          onSubmit={handle_bid_submit}
+                                          className="fieldset space-y-3"
+                                    >
                                           {/* buyer name & email field */}
                                           <fieldset className="flex flex-col md:flex-row justify-between">
                                                 {/* buyer name field */}
@@ -181,12 +205,11 @@ const Product_details = () => {
                                                             name="name"
                                                             type="text"
                                                             className="input validator w-full outline-none"
-                                                            placeholder="Buyer Name"
-                                                            required
+                                                            defaultValue={
+                                                                  user.displayName
+                                                            }
+                                                            readOnly
                                                       />
-                                                      <p className="validator-hint hidden">
-                                                            Required
-                                                      </p>
                                                 </fieldset>
 
                                                 {/* buyer email field */}
@@ -198,12 +221,11 @@ const Product_details = () => {
                                                             name="email"
                                                             type="email"
                                                             className="input validator w-full outline-none"
-                                                            placeholder="Buyer Email"
-                                                            required
+                                                            defaultValue={
+                                                                  user.email
+                                                            }
+                                                            readOnly
                                                       />
-                                                      <p className="validator-hint hidden">
-                                                            Required
-                                                      </p>
                                                 </fieldset>
                                           </fieldset>
 
@@ -224,13 +246,13 @@ const Product_details = () => {
                                                 </span>
                                           </fieldset>
 
-                                          {/* bid price field */}
+                                          {/* bid amount field */}
                                           <fieldset className="fieldset">
                                                 <label className="label text-black text-sm font-medium">
                                                       Place your Price
                                                 </label>
                                                 <input
-                                                      name="place_price"
+                                                      name="bid_amount"
                                                       type="number"
                                                       className="input validator w-full outline-none"
                                                       placeholder="Place your Price"
