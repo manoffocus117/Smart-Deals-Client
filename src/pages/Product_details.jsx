@@ -30,6 +30,10 @@ const Product_details = () => {
             bid_modal_ref.current.showModal();
       };
 
+      const handle_modal_close = () => {
+            bid_modal_ref.current.close();
+      };
+
       return (
             <section className="w-11/12 mx-auto my-32.5 grid grid-cols-1 md:grid-cols-7 gap-10 items-center">
                   {/* back to product */}
@@ -159,24 +163,121 @@ const Product_details = () => {
                         {/* dialog box for bid */}
                         <dialog
                               ref={bid_modal_ref}
-                              className="modal modal-bottom sm:modal-middle"
+                              className="modal modal-center sm:modal-middle"
                         >
                               <div className="modal-box">
-                                    <div className="modal-action">
-                                          <form method="dialog">
-                                                {/* if there is a button in form, it will close the modal */}
-                                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-                                                      ✕
-                                                </button>
-                                          </form>
-                                    </div>
-                                    <h3 className="font-bold text-lg">
-                                          Hello!
+                                    <h3 className="font-bold text-center text-2xl mb-4">
+                                          Give Seller Your Offered Price
                                     </h3>
-                                    <p className="py-4">
-                                          Press ESC key or click the button
-                                          below to close
-                                    </p>
+                                    <form className="fieldset space-y-3">
+                                          {/* buyer name & email field */}
+                                          <fieldset className="flex flex-col md:flex-row justify-between">
+                                                {/* buyer name field */}
+                                                <fieldset className="fieldset">
+                                                      <label className="label text-black text-sm font-medium">
+                                                            Buyer Name
+                                                      </label>
+                                                      <input
+                                                            name="name"
+                                                            type="text"
+                                                            className="input validator w-full outline-none"
+                                                            placeholder="Buyer Name"
+                                                            required
+                                                      />
+                                                      <p className="validator-hint hidden">
+                                                            Required
+                                                      </p>
+                                                </fieldset>
+
+                                                {/* buyer email field */}
+                                                <fieldset className="fieldset">
+                                                      <label className="label text-black text-sm font-medium">
+                                                            Buyer Email
+                                                      </label>
+                                                      <input
+                                                            name="email"
+                                                            type="email"
+                                                            className="input validator w-full outline-none"
+                                                            placeholder="Buyer Email"
+                                                            required
+                                                      />
+                                                      <p className="validator-hint hidden">
+                                                            Required
+                                                      </p>
+                                                </fieldset>
+                                          </fieldset>
+
+                                          {/* buyer image url field */}
+                                          <fieldset className="fieldset">
+                                                <label className="label text-black text-sm font-medium">
+                                                      Buyer Image URL
+                                                </label>
+                                                <input
+                                                      name="buyer_image"
+                                                      type="url"
+                                                      className="input validator w-full outline-none"
+                                                      placeholder="Buyer Image URL"
+                                                      required
+                                                />
+                                                <span className="validator-hint hidden">
+                                                      Required
+                                                </span>
+                                          </fieldset>
+
+                                          {/* bid price field */}
+                                          <fieldset className="fieldset">
+                                                <label className="label text-black text-sm font-medium">
+                                                      Place your Price
+                                                </label>
+                                                <input
+                                                      name="place_price"
+                                                      type="number"
+                                                      className="input validator w-full outline-none"
+                                                      placeholder="Place your Price"
+                                                      required
+                                                />
+                                                <span className="validator-hint hidden">
+                                                      Required
+                                                </span>
+                                          </fieldset>
+
+                                          {/* contact info field */}
+                                          <fieldset className="fieldset">
+                                                <label className="label text-black text-sm font-medium">
+                                                      Contact Info
+                                                </label>
+                                                <input
+                                                      name="phone_number"
+                                                      type="number"
+                                                      className="input validator w-full outline-none"
+                                                      placeholder="Phone Number"
+                                                      required
+                                                />
+                                                <span className="validator-hint hidden">
+                                                      Required
+                                                </span>
+                                          </fieldset>
+
+                                          {/* form action */}
+                                          <div className="flex items-center justify-end gap-5 mt-5">
+                                                {/* cancel button */}
+                                                <span
+                                                      className="btn gradient-btn"
+                                                      onClick={
+                                                            handle_modal_close
+                                                      }
+                                                >
+                                                      Cancel
+                                                </span>
+                                                {/* submit button */}
+                                                <button
+                                                      className="btn primary-background text-[1rem] text-white font-medium"
+                                                      type="submit"
+                                                >
+                                                      Submit Bid
+                                                </button>
+                                          </div>
+                                    </form>
                               </div>
                         </dialog>
                   </div>

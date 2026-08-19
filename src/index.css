@@ -17,6 +17,12 @@
       );
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+}
+
 body {
       font-family: "Inter", sans-serif;
       overflow-x: hidden;
