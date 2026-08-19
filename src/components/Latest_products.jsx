@@ -1,10 +1,11 @@
 import React, { use } from "react";
 import Product_card from "./Product_card";
+import { Link } from "react-router";
 
 const Latest_products = ({ latest_products_promise }) => {
       const products = use(latest_products_promise);
       return (
-            <section className="w-11/12 mx-auto mb-36 ">
+            <section className="w-11/12 mx-auto mb-36 flex flex-col items-center">
                   <h1 className="text-5xl text-center font-bold py-10">
                         Recent <span className="primary-color">Products</span>
                   </h1>
@@ -16,6 +17,12 @@ const Latest_products = ({ latest_products_promise }) => {
                               />
                         ))}
                   </div>
+                  <Link
+                        to={"/all-products"}
+                        className="btn px-10 primary-background hover:opacity-80 my-10 mx-auto"
+                  >
+                        Show All
+                  </Link>
             </section>
       );
 };

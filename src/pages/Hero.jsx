@@ -2,6 +2,7 @@ import React from "react";
 import Background from "../assets/Background.jpg";
 import { FaSearch } from "react-icons/fa";
 import Latest_products from "../components/Latest_products";
+import { Link } from "react-router";
 
 const latest_products_promise = fetch(
       "http://localhost:3000/latest-products",
@@ -43,12 +44,18 @@ const Hero = () => {
                                           </button>
                                     </div>
                                     <div className="space-x-4">
-                                          <button className="btn primary-background text-white rounded">
+                                          <Link
+                                                to={"/all-products"}
+                                                className="btn primary-background text-white rounded"
+                                          >
                                                 Watch All Products
-                                          </button>
-                                          <button className="btn gradient-btn">
+                                          </Link>
+                                          <Link
+                                                to={"/create-product"}
+                                                className="btn gradient-btn"
+                                          >
                                                 Post an Product
-                                          </button>
+                                          </Link>
                                     </div>
                               </div>
                         </div>
