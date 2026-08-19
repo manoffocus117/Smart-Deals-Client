@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link, useLoaderData } from "react-router";
 
@@ -22,6 +22,13 @@ const Product_details = () => {
             usage,
             _id,
       } = product;
+
+      const bid_modal_ref = useRef(null);
+
+      // handler for bid modal open
+      const handle_modal_open = () => {
+            bid_modal_ref.current.showModal();
+      };
 
       return (
             <section className="w-11/12 mx-auto my-32.5 grid grid-cols-1 md:grid-cols-7 gap-10 items-center">
@@ -143,9 +150,35 @@ const Product_details = () => {
                                     </span>
                               </h3>
                         </div>
-                        <button className="btn primary-background w-full">
+                        <button
+                              className="btn primary-background w-full"
+                              onClick={handle_modal_open}
+                        >
                               I want to Buy This Product
                         </button>
+                        {/* dialog box for bid */}
+                        <dialog
+                              ref={bid_modal_ref}
+                              className="modal modal-bottom sm:modal-middle"
+                        >
+                              <div className="modal-box">
+                                    <div className="modal-action">
+                                          <form method="dialog">
+                                                {/* if there is a button in form, it will close the modal */}
+                                                <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                                                      ✕
+                                                </button>
+                                          </form>
+                                    </div>
+                                    <h3 className="font-bold text-lg">
+                                          Hello!
+                                    </h3>
+                                    <p className="py-4">
+                                          Press ESC key or click the button
+                                          below to close
+                                    </p>
+                              </div>
+                        </dialog>
                   </div>
             </section>
       );
