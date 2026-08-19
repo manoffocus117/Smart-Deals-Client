@@ -1,16 +1,15 @@
 import React from "react";
-import { FaRegCopyright } from "react-icons/fa6";
 
 const Footer = () => {
       return (
             <footer className="bg-[rgb(0,25,49)] text-white flex flex-col pt-20">
-                  <div className="w-11/12 mx-auto p-5 grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 sm:gap-8 pb-20">
-                        <aside className="space-y-3">
+                  <div className="w-11/12 mx-auto p-5 grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-1 gap-8 pb-20">
+                        <aside className="space-y-3 lg:w-87.5 lg:col-span-2">
                               <h1 className="text-4xl font-medium">
                                     Smart
                                     <span className="primary-color">Deals</span>
                               </h1>
-                              <p>
+                              <p className="text-justify">
                                     Your trusted marketplace for authentic local
                                     products. Discover the best deals from
                                     across Bangladesh.
@@ -84,18 +83,15 @@ const Footer = () => {
                         </div>
                   </div>
                   <div className="w-11/12 mx-auto divider divider-secondary mb-0"></div>
-                  <div className="w-2/3 md:w-11/12 mx-auto text-center p-10 flex flex-row items-center justify-center gap-2">
-                        <FaRegCopyright />
-                        <p>
-                              All right reserved 2026 by{" "}
-                              <a
-                                    href="https://github.com/manoffocus117/"
-                                    className="primary-color font-medium underline"
-                              >
-                                    MD Saifur Rahman
-                              </a>
-                        </p>
-                  </div>
+                  <p className="w-11/12 mx-auto text-center p-10">
+                        &copy; All right reserved 2026 by{" "}
+                        <a
+                              href="https://github.com/manoffocus117/"
+                              className="primary-color font-medium underline"
+                        >
+                              MD Saifur Rahman
+                        </a>
+                  </p>
             </footer>
       );
 };
