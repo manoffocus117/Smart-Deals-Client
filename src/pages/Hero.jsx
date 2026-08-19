@@ -16,7 +16,7 @@ const Hero = () => {
                               alt=""
                               className="w-full h-full object-cover"
                         />
-                        <div className="w-full absolute z-1 top-[15%] lg:top-[30%] py-5">
+                        <div className="w-full absolute z-1 top-[15%] lg:top-[25%] py-5">
                               <div className="w-11/12 mx-auto flex flex-col items-center justify-center gap-5">
                                     <h1 className="lg:text-7xl text-4xl lg:w-1/2 text-center font-bold">
                                           Deal your{" "}

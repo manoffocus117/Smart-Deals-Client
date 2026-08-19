@@ -9,6 +9,7 @@ import Create_product from "../pages/Create_product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Private_route from "../providers/Private_route";
+import Product_details from "./../pages/Product_details";
 
 const router = createBrowserRouter([
       {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
                   {
                         path: "all-products",
                         Component: All_products,
+                  },
+                  {
+                        path: "product-details/:id",
+                        Component: Product_details,
                   },
                   {
                         path: "my-products",
