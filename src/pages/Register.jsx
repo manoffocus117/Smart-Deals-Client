@@ -47,7 +47,7 @@ const Register = () => {
 
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
-                  <div className="bg-white w-123 border-base-300 rounded-box border p-10 space-y-2">
+                  <div className="bg-white w-80 md:w-123 border-base-300 rounded-box border p-10 space-y-2">
                         <form
                               onSubmit={handle_register_form}
                               className="fieldset"

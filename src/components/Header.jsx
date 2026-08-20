@@ -50,7 +50,10 @@ const Header = () => {
             <header className="w-11/12 mx-auto py-2">
                   <nav className="navbar p-0">
                         <div className="navbar-start">
-                              <Link to={"/"} className="text-[2rem] font-bold">
+                              <Link
+                                    to={"/"}
+                                    className="text-xl md:text-[2rem] font-bold"
+                              >
                                     Smart
                                     <span className="primary-color">Deals</span>
                               </Link>

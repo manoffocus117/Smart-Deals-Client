@@ -27,6 +27,7 @@ const Product_details = () => {
       const bid_modal_ref = useRef(null);
 
       const { user } = use(Auth_context);
+      console.log(user);
 
       // handler for bid modal open
       const handle_modal_open = () => {
@@ -238,8 +239,10 @@ const Product_details = () => {
                                                       name="buyer_image"
                                                       type="url"
                                                       className="input validator w-full outline-none"
-                                                      placeholder="Buyer Image URL"
-                                                      required
+                                                      defaultValue={
+                                                            user.photoURL
+                                                      }
+                                                      readOnly
                                                 />
                                                 <span className="validator-hint hidden">
                                                       Required
@@ -273,6 +276,9 @@ const Product_details = () => {
                                                       type="number"
                                                       className="input validator w-full outline-none"
                                                       placeholder="Phone Number"
+                                                      defaultValue={
+                                                            user.phoneNumber
+                                                      }
                                                       required
                                                 />
                                                 <span className="validator-hint hidden">

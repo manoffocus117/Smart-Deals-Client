@@ -27,8 +27,8 @@ const Login = () => {
       };
 
       return (
-            <section className="w-11/12 mx-auto h-screen flex flex-col items-center justify-center">
-                  <div className="bg-white border-base-300 rounded-box w-123 border p-10 space-y-2">
+            <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center">
+                  <div className="bg-white border-base-300 rounded-box w-80 md:w-123 border p-10 space-y-2">
                         <form
                               onSubmit={handle_login_form}
                               className="fieldset "
