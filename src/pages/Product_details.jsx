@@ -21,7 +21,7 @@ const Product_details = () => {
             status,
             title,
             usage,
-            _id,
+            _id: product_id,
       } = product;
 
       const bid_modal_ref = useRef(null);
@@ -47,12 +47,35 @@ const Product_details = () => {
             const name = form.name.value;
             const email = form.email.value;
             const image = form.buyer_image.value;
-            const price = form.bid_amount.value;
+            const amount = form.bid_amount.value;
             const contact = form.phone_number.value;
 
             event.target.reset();
             // close modal after form submit
             bid_modal_ref.current.close();
+
+            const new_bid = {
+                  product: product_id,
+                  buyer_name: name,
+                  buyer_email: email,
+                  buyer_image: image,
+                  buyer_contact: contact,
+                  bid_price: amount,
+                  status: "Pending",
+            };
+
+            // send bids data to the server/database
+            fetch("http://localhost:3000/bids", {
+                  method: "POST",
+                  headers: {
+                        "content-type": "application/json",
+                  },
+                  body: JSON.stringify(new_bid),
+            })
+                  .then((res) => res.json())
+                  .then((data) => {
+                        console.log("after placing bid", data);
+                  });
       };
 
       return (
@@ -127,7 +150,7 @@ const Product_details = () => {
                                     <span className="font-bold">
                                           Product ID:
                                     </span>{" "}
-                                    {_id}
+                                    {product_id}
                               </p>
                               <p>
                                     <span className="font-bold">Posted:</span>{" "}
@@ -276,9 +299,6 @@ const Product_details = () => {
                                                       type="number"
                                                       className="input validator w-full outline-none"
                                                       placeholder="Phone Number"
-                                                      defaultValue={
-                                                            user.phoneNumber
-                                                      }
                                                       required
                                                 />
                                                 <span className="validator-hint hidden">
