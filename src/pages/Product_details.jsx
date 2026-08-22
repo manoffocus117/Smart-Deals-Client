@@ -51,7 +51,6 @@ const Product_details = () => {
             const form = event.target;
             const name = form.name.value;
             const email = form.email.value;
-            const image = form.buyer_image.value;
             const amount = form.bid_amount.value;
             const contact = form.phone_number.value;
 
@@ -61,7 +60,7 @@ const Product_details = () => {
                   product: product_id,
                   buyer_name: name,
                   buyer_email: email,
-                  buyer_image: image,
+                  buyer_image: user?.photoURL,
                   buyer_contact: contact,
                   bid_price: amount,
                   status: "Pending",
@@ -83,8 +82,17 @@ const Product_details = () => {
                                     text: "You bid has been Placed!",
                                     icon: "success",
                               });
+
                               // close modal after form submit
                               bid_modal_ref.current.close();
+
+                              // add new bid to the state
+                              new_bid._id = data.insertedId;
+                              const new_bids = [...product_bids, new_bid];
+                              new_bids.sort((a, b) => {
+                                    b.bid_price - a.bid_price;
+                              });
+                              set_product_bids(new_bids);
                         } else {
                               Swal.fire({
                                     title: "Error",
@@ -117,7 +125,7 @@ const Product_details = () => {
                               <figure className="h-96 md:h-150">
                                     <img
                                           src={image}
-                                          alt=""
+                                          alt={title}
                                           className="h-full w-full object-cover rounded-xl"
                                     />
                               </figure>
@@ -361,12 +369,80 @@ const Product_details = () => {
                   </section>
                   {/* bids for a product */}
                   <section className="w-11/12 mx-auto pb-32.5">
-                        <h1 className="text-5xl">
+                        <h1 className="text-5xl font-bold mb-10 capitalize">
                               bids for this product:{" "}
                               <span className="primary-color">
                                     {product_bids.length}
                               </span>
                         </h1>
+                        <div className="overflow-x-auto">
+                              <table className="table">
+                                    {/* head */}
+                                    <thead className="bg-base-200">
+                                          <tr>
+                                                <th>SL No.</th>
+                                                <th>Buyer</th>
+                                                <th>Bid Price</th>
+                                                <th>Actions</th>
+                                          </tr>
+                                    </thead>
+                                    <tbody>
+                                          {/* row 1 */}
+                                          {product_bids.map((bid, index) => (
+                                                <tr>
+                                                      <th>{index + 1}</th>
+                                                      {/* buyer */}
+                                                      <td>
+                                                            <div className="flex items-center gap-3">
+                                                                  <div className="avatar">
+                                                                        <div className="mask rounded-full h-12 w-12">
+                                                                              <img
+                                                                                    src={
+                                                                                          bid.buyer_image
+                                                                                    }
+                                                                                    alt={
+                                                                                          bid.buyer_name
+                                                                                    }
+                                                                              />
+                                                                        </div>
+                                                                  </div>
+                                                                  <div>
+                                                                        <div className="font-bold">
+                                                                              {
+                                                                                    bid.buyer_name
+                                                                              }
+                                                                        </div>
+                                                                        <div className="text-sm opacity-50">
+                                                                              {
+                                                                                    bid.buyer_email
+                                                                              }
+                                                                        </div>
+                                                                  </div>
+                                                            </div>
+                                                      </td>
+                                                      {/* bid amount */}
+                                                      <td>
+                                                            <span>&#2547;</span>{" "}
+                                                            <span>
+                                                                  {
+                                                                        bid.bid_price
+                                                                  }
+                                                            </span>
+                                                      </td>
+                                                      {/* bid actions */}
+                                                      <th className="space-x-2">
+                                                            <button className="btn btn-outline btn-success">
+                                                                  Accept Offer
+                                                            </button>
+                                                            <button className="btn btn-outline btn-warning">
+                                                                  Reject Offer
+                                                            </button>
+                                                      </th>
+                                                </tr>
+                                          ))}
+                                    </tbody>
+                              </table>
+                        </div>
                   </section>
             </>
       );
