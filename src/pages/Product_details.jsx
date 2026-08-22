@@ -2,6 +2,7 @@ import React, { use, useRef } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link, useLoaderData } from "react-router";
 import { Auth_context } from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Product_details = () => {
       const product = useLoaderData();
@@ -27,7 +28,6 @@ const Product_details = () => {
       const bid_modal_ref = useRef(null);
 
       const { user } = use(Auth_context);
-      console.log(user);
 
       // handler for bid modal open
       const handle_modal_open = () => {
@@ -51,8 +51,6 @@ const Product_details = () => {
             const contact = form.phone_number.value;
 
             event.target.reset();
-            // close modal after form submit
-            bid_modal_ref.current.close();
 
             const new_bid = {
                   product: product_id,
@@ -74,7 +72,21 @@ const Product_details = () => {
             })
                   .then((res) => res.json())
                   .then((data) => {
-                        console.log("after placing bid", data);
+                        if (data.insertedId) {
+                              Swal.fire({
+                                    title: "Success",
+                                    text: "You bid has been Placed!",
+                                    icon: "success",
+                              });
+                              // close modal after form submit
+                              bid_modal_ref.current.close();
+                        } else {
+                              Swal.fire({
+                                    title: "Error",
+                                    text: "Something went wrong",
+                                    icon: "error",
+                              });
+                        }
                   });
       };
 
@@ -310,7 +322,7 @@ const Product_details = () => {
                                           <div className="flex items-center justify-end gap-5 mt-5">
                                                 {/* cancel button */}
                                                 <span
-                                                      className="btn gradient-btn"
+                                                      className="btn gradient-btn outline-none"
                                                       onClick={
                                                             handle_modal_close
                                                       }
@@ -319,7 +331,7 @@ const Product_details = () => {
                                                 </span>
                                                 {/* submit button */}
                                                 <button
-                                                      className="btn primary-background text-[1rem] text-white font-medium"
+                                                      className="btn primary-background text-[1rem] text-white font-medium outline-none"
                                                       type="submit"
                                                 >
                                                       Submit Bid
