@@ -389,7 +389,7 @@ const Product_details = () => {
                                     <tbody>
                                           {/* row 1 */}
                                           {product_bids.map((bid, index) => (
-                                                <tr>
+                                                <tr key={bid._id}>
                                                       <th>{index + 1}</th>
                                                       {/* buyer */}
                                                       <td>
