@@ -1,5 +1,6 @@
 import React, { use, useEffect, useState } from "react";
 import { Auth_context } from "./../context/Auth_context";
+import Swal from "sweetalert2";
 
 const My_bids = () => {
       // user data
@@ -14,11 +15,43 @@ const My_bids = () => {
             if (user?.email) {
                   fetch(`http://localhost:3000/bids?email=${user.email}`)
                         .then((res) => res.json())
-                        .then((data) => {
-                              (console.log(data), set_bids(data));
-                        });
+                        .then((data) => set_bids(data));
             }
       }, [user?.email]);
+
+      const handle_remove_bid = (_id) => {
+            Swal.fire({
+                  title: "Are you sure?",
+                  text: "You won't be able to revert this!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, delete it!",
+            }).then((result) => {
+                  if (result.isConfirmed)
+                        // deleting bid
+                        fetch(`http://localhost:3000/bids/${_id}`, {
+                              method: "DELETE",
+                        })
+                              .then((res) => res.json())
+                              .then((data) => {
+                                    if (data.deletedCount) {
+                                          Swal.fire({
+                                                title: "Deleted!",
+                                                text: "Your bid has been deleted.",
+                                                icon: "success",
+                                          });
+
+                                          // removing bid from ui
+                                          const remaining_bids = bids.filter(
+                                                (bid) => bid._id !== _id,
+                                          );
+                                          set_bids(remaining_bids);
+                                    }
+                              });
+            });
+      };
 
       return (
             <section className="w-11/12 mx-auto pb-32.5">
@@ -101,8 +134,15 @@ const My_bids = () => {
                                                       )}
                                                 </td>
                                                 {/* bid actions */}
-                                                <th className="space-x-2">
-                                                      <button className="btn btn-outline btn-error">
+                                                <th>
+                                                      <button
+                                                            onClick={() =>
+                                                                  handle_remove_bid(
+                                                                        bid._id,
+                                                                  )
+                                                            }
+                                                            className="btn btn-outline btn-error"
+                                                      >
                                                             Remove Bid
                                                       </button>
                                                 </th>
