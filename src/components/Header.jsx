@@ -80,7 +80,7 @@ const Header = () => {
                                                                         alt="User image"
                                                                         src={
                                                                               user
-                                                                                    ? user.photoURL
+                                                                                    ? user?.photoURL
                                                                                     : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                                                                         }
                                                                   />
