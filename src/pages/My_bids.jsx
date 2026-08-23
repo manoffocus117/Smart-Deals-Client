@@ -14,15 +14,103 @@ const My_bids = () => {
             if (user?.email) {
                   fetch(`http://localhost:3000/bids?email=${user.email}`)
                         .then((res) => res.json())
-                        .then((data) => set_bids(data));
+                        .then((data) => {
+                              (console.log(data), set_bids(data));
+                        });
             }
       }, [user?.email]);
 
       return (
-            <section className="w-11/12 mx-auto">
-                  <h1 className="primary-color text-5xl">
-                        My_bids : {bids.length}
+            <section className="w-11/12 mx-auto pb-32.5">
+                  <h1 className="text-5xl font-bold mb-10 capitalize text-center">
+                        My Bids :{" "}
+                        <span className="primary-color">{bids.length}</span>
                   </h1>
+                  <div className="overflow-x-auto">
+                        <table className="table">
+                              {/* head */}
+                              <thead className="bg-base-200">
+                                    <tr>
+                                          <th>SL No.</th>
+                                          <th>Product</th>
+                                          <th>Seller</th>
+                                          <th>Bid Price</th>
+                                          <th>Status</th>
+                                          <th>Actions</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    {/* row 1 */}
+                                    {bids.map((bid, index) => (
+                                          <tr key={bid._id}>
+                                                <th>{index + 1}</th>
+                                                {/* product */}
+                                                <td>
+                                                      <div className="flex items-center gap-3">
+                                                            <div className="avatar">
+                                                                  <div className="mask rounded-full h-12 w-12">
+                                                                        <img
+                                                                              src={
+                                                                                    bids.buyer_image
+                                                                              }
+                                                                              alt={
+                                                                                    bids.buyer_name
+                                                                              }
+                                                                        />
+                                                                  </div>
+                                                            </div>
+                                                            <div>
+                                                                  <div className="font-bold">
+                                                                        {
+                                                                              bids.buyer_name
+                                                                        }
+                                                                  </div>
+                                                                  <div className="text-sm opacity-50">
+                                                                        {
+                                                                              bids.buyer_email
+                                                                        }
+                                                                  </div>
+                                                            </div>
+                                                      </div>
+                                                </td>
+                                                {/* seller info */}
+                                                <td>
+                                                      <span>&#2547;</span>{" "}
+                                                      <span>
+                                                            {bids.bid_price}
+                                                      </span>
+                                                </td>
+                                                {/* bid price */}
+                                                <td>
+                                                      <span>&#2547;</span>{" "}
+                                                      <span>
+                                                            {bid.bid_price}
+                                                      </span>
+                                                </td>
+                                                {/* status */}
+                                                <td>
+                                                      {bid.status ===
+                                                      "success" ? (
+                                                            <span className="badge badge-success">
+                                                                  {bid.status}
+                                                            </span>
+                                                      ) : (
+                                                            <span className="badge badge-warning">
+                                                                  {bid.status}
+                                                            </span>
+                                                      )}
+                                                </td>
+                                                {/* bid actions */}
+                                                <th className="space-x-2">
+                                                      <button className="btn btn-outline btn-error">
+                                                            Remove Bid
+                                                      </button>
+                                                </th>
+                                          </tr>
+                                    ))}
+                              </tbody>
+                        </table>
+                  </div>
             </section>
       );
 };
