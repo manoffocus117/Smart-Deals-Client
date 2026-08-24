@@ -23,6 +23,8 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "all-products",
+                        loader: () => fetch("http://localhost:3000/products"),
+                        hydrateFallbackElement: <Loading />,
                         Component: All_products,
                   },
                   {
