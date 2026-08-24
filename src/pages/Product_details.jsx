@@ -62,7 +62,7 @@ const Product_details = () => {
                   buyer_email: email,
                   buyer_image: user?.photoURL,
                   buyer_contact: contact,
-                  bid_price: amount,
+                  bid_price: Number(amount),
                   status: "Pending",
             };
 
@@ -89,9 +89,9 @@ const Product_details = () => {
                               // add new bid to the state
                               new_bid._id = data.insertedId;
                               const new_bids = [...product_bids, new_bid];
-                              new_bids.sort((a, b) => {
-                                    b.bid_price - a.bid_price;
-                              });
+                              new_bids.sort(
+                                    (a, b) => b.bid_price - a.bid_price,
+                              );
                               set_product_bids(new_bids);
                         } else {
                               Swal.fire({
