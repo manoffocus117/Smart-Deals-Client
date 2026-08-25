@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const Create_product = () => {
+      // state for category option value
+      const [category_value, set_category_value] = useState("");
+
+      // handler for category option value
+      const handle_category_change = (event) => {
+            set_category_value(event.target.value);
+      };
+
       const handle_create_product = (event) => {
             event.preventDefault();
+
+            const form = event.target;
+
+            const product_title = form.product_title.value;
+            const category = form.category.value;
+            const min_price = form.min_price.value;
+            const max_price = form.max_price.value;
+            const condition_new = form.condition_new.value;
+            const condition_used = form.condition_used.value;
+            const usage_time = form.usage_time.value;
+            const product_image_url = form.product_image_url.value;
+            const seller_name = form.seller_name.value;
+            const seller_email = form.seller_email.value;
+            const seller_number = form.seller_number.value;
+            const seller_image_url = form.seller_image_url.value;
+            const seller_location = form.seller_location.value;
+            const product_description = form.product_description.value;
+
+            event.target.reset();
       };
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center gap-10">
@@ -23,36 +50,50 @@ const Create_product = () => {
                   >
                         {/* product name & category field */}
                         <fieldset className="fieldset flex">
+                              {/* product name */}
                               <fieldset className="fieldset w-full">
                                     <label className="label" htmlFor="title">
                                           Title
                                     </label>
                                     <input
+                                          name="product_title"
                                           type="text"
                                           id="title"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="Name of Product"
                                     />
                               </fieldset>
+                              {/* product category */}
                               <fieldset className="fieldset w-full">
                                     <label htmlFor="category">Category</label>
                                     <select
+                                          name="category"
                                           id="category"
-                                          className="select w-full"
-                                          defaultValue="Select Category"
+                                          onChange={handle_category_change}
+                                          value={category_value}
+                                          className="select w-full outline-none"
                                     >
-                                          <option disabled>
-                                                Select Category
+                                          <option value="">
+                                                Select a Category
                                           </option>
-                                          <option>Crimson</option>
-                                          <option>Amber</option>
-                                          <option>Velvet</option>
+                                          <option value="camera">Camera</option>
+                                          <option value="electronics">
+                                                Electronics
+                                          </option>
+                                          <option value="furniture">
+                                                Furniture
+                                          </option>
+                                          <option value="gaming">Gaming</option>
+                                          <option value="music">Music</option>
+                                          <option value="office">Office</option>
+                                          <option value="sports">Sports</option>
                                     </select>
                               </fieldset>
                         </fieldset>
 
-                        {/* min price & max price */}
+                        {/* min price & max price field */}
                         <fieldset className="fieldset flex">
+                              {/* min price */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
@@ -61,12 +102,14 @@ const Create_product = () => {
                                           Min Price
                                     </label>
                                     <input
-                                          type="text"
+                                          name="min_price"
+                                          type="number"
                                           id="min-price"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="Min Price"
                                     />
                               </fieldset>
+                              {/* max price */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
@@ -75,24 +118,29 @@ const Create_product = () => {
                                           Max Price
                                     </label>
                                     <input
-                                          type="text"
+                                          name="max_price"
+                                          type="number"
                                           id="max-price"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="Max Price"
                                     />
                               </fieldset>
                         </fieldset>
 
-                        {/* product condition & usage */}
+                        {/* product condition & usage field */}
                         <fieldset className="fieldset flex items-center">
+                              {/* product condition */}
                               <fieldset className="w-full flex flex-col gap-2">
                                     <label>Product Condition</label>
+                                    {/* condition brand new & used */}
                                     <fieldset className="flex items-center gap-2 w-full">
+                                          {/* brand new radio */}
                                           <input
                                                 type="radio"
-                                                name="radio-1"
+                                                name="condition_new"
                                                 id="brand-new"
                                                 className="radio"
+                                                defaultValue={"brand new"}
                                           />
                                           <label
                                                 className="label"
@@ -100,11 +148,13 @@ const Create_product = () => {
                                           >
                                                 Brand New
                                           </label>
+                                          {/* used radio */}
                                           <input
                                                 type="radio"
-                                                name="radio-1"
+                                                name="condition_used"
                                                 id="used"
                                                 className="radio"
+                                                defaultValue={"used"}
                                           />
                                           <label
                                                 className="label"
@@ -114,6 +164,7 @@ const Create_product = () => {
                                           </label>
                                     </fieldset>
                               </fieldset>
+                              {/* product usage time */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
@@ -122,34 +173,33 @@ const Create_product = () => {
                                           Product Usage Time
                                     </label>
                                     <input
+                                          name="usage_time"
                                           type="text"
                                           id="product-usage"
-                                          className="input w-full"
-                                          placeholder="Product Usage Time"
+                                          className="input w-full outline-none"
+                                          placeholder="e.g. 1 year 3 month"
                                     />
                               </fieldset>
                         </fieldset>
 
-                        {/* product image url */}
+                        {/* product image url field */}
                         <fieldset className="fieldset w-full">
                               <label htmlFor="">Product Image URL</label>
-                              <label className="input validator w-full">
+                              <label className="input w-full outline-none">
                                     <input
+                                          name="product_image_url"
                                           type="url"
-                                          required
                                           placeholder="https://"
-                                          value="https://"
+                                          defaultValue="https://"
                                           pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                                           title="Must be valid URL"
                                     />
                               </label>
-                              <p className="validator-hint">
-                                    Must be valid URL
-                              </p>
                         </fieldset>
 
-                        {/* seller name & email */}
+                        {/* seller name & email field */}
                         <fieldset className="fieldset flex">
+                              {/* seller name */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
@@ -158,12 +208,14 @@ const Create_product = () => {
                                           Seller Name
                                     </label>
                                     <input
+                                          name="seller_name"
                                           type="text"
                                           id="seller-name"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="Name"
                                     />
                               </fieldset>
+                              {/* seller email */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
@@ -172,67 +224,69 @@ const Create_product = () => {
                                           Seller Email
                                     </label>
                                     <input
+                                          name="seller_email"
                                           type="text"
                                           id="seller-email"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="Email"
                                     />
                               </fieldset>
                         </fieldset>
 
-                        {/* seller contact & image url */}
+                        {/* seller contact & image url field */}
                         <fieldset className="fieldset flex">
+                              {/* seller number */}
                               <fieldset className="fieldset w-full">
                                     <label
                                           className="label"
                                           htmlFor="seller-contact"
                                     >
-                                          Seller Name
+                                          Seller Contact
                                     </label>
                                     <input
-                                          type="text"
+                                          name="seller_number"
+                                          type="number"
                                           id="seller-contact"
-                                          className="input w-full"
+                                          className="input w-full outline-none"
                                           placeholder="01234567890"
                                     />
                               </fieldset>
+                              {/* seller image url */}
                               <fieldset className="fieldset w-full">
                                     <label htmlFor="">Seller Image URL</label>
-                                    <label className="input validator w-full">
+                                    <label className="input w-full outline-none">
                                           <input
+                                                name="seller_image_url"
                                                 type="url"
-                                                required
                                                 placeholder="https://"
-                                                value="https://"
+                                                defaultValue="https://"
                                                 pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                                                 title="Must be valid URL"
                                           />
                                     </label>
-                                    <p className="validator-hint">
-                                          Must be valid URL
-                                    </p>
                               </fieldset>
                         </fieldset>
 
-                        {/* seller location */}
+                        {/* seller location field */}
                         <fieldset className="fieldset w-full">
                               <label htmlFor="">Location</label>
                               <input
-                                    type="url"
-                                    className="input w-full"
-                                    required
+                                    name="seller_location"
+                                    type="text"
+                                    className="input w-full outline-none"
                                     placeholder="Street, City, Country"
                               />
                         </fieldset>
 
-                        {/* product description */}
+                        {/* product description field */}
                         <fieldset className="fieldset w-full">
                               <legend className="fieldset-legend">
                                     Simple Description about your Product
                               </legend>
                               <textarea
-                                    className="textarea h-24 w-full"
-                                    placeholder=""
+                                    name="product_description"
+                                    className="textarea h-24 w-full outline-none"
+                                    placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate nostrum autem ipsum sequi ab"
                               ></textarea>
                         </fieldset>
 
