@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
+import { Auth_context } from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Create_product = () => {
       // state for category option value
@@ -20,8 +22,7 @@ const Create_product = () => {
             const category = category_value;
             const min_price = form.min_price.value;
             const max_price = form.max_price.value;
-            const condition_new = form.condition_new.value;
-            const condition_used = form.condition_used.value;
+            const condition = form.condition.value;
             const usage_time = form.usage_time.value;
             const product_image_url = form.product_image_url.value;
             const seller_name = form.seller_name.value;
@@ -32,6 +33,40 @@ const Create_product = () => {
             const product_description = form.product_description.value;
 
             event.target.reset();
+
+            const new_product = {
+                  title: product_title,
+                  price_min: min_price,
+                  price_max: max_price,
+                  email: seller_email,
+                  category: category,
+                  created_at: new Date().toISOString(),
+                  image: product_image_url,
+                  status: "pending",
+                  location: seller_location,
+                  seller_image: seller_image_url,
+                  seller_name: seller_name,
+                  condition: condition,
+                  usage: usage_time,
+                  description: product_description,
+                  seller_contact: seller_number,
+            };
+
+            fetch("http://localhost:3000/products", {
+                  method: "POST",
+                  headers: {
+                        "content-type": "application/json",
+                  },
+                  body: JSON.stringify(new_product),
+            })
+                  .then((res) => res.json())
+                  .then((data) =>
+                        Swal.fire({
+                              title: "Success",
+                              text: "Your product has been created successfully!",
+                              icon: "success",
+                        }),
+                  );
       };
       return (
             <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center gap-10">
@@ -144,31 +179,29 @@ const Create_product = () => {
                                     {/* condition brand new & used */}
                                     <fieldset className="flex items-center gap-2 w-full">
                                           {/* brand new radio */}
-                                          <input
-                                                type="radio"
-                                                name="condition_new"
-                                                id="brand-new"
-                                                className="radio"
-                                                defaultValue={"brand new"}
-                                          />
                                           <label
                                                 className="label"
                                                 htmlFor="brand-new"
                                           >
+                                                <input
+                                                      type="radio"
+                                                      name="condition"
+                                                      className="radio"
+                                                      value="new"
+                                                />
                                                 Brand New
                                           </label>
                                           {/* used radio */}
-                                          <input
-                                                type="radio"
-                                                name="condition_used"
-                                                id="used"
-                                                className="radio"
-                                                defaultValue={"used"}
-                                          />
                                           <label
                                                 className="label"
                                                 htmlFor="used"
                                           >
+                                                <input
+                                                      type="radio"
+                                                      name="condition"
+                                                      className="radio"
+                                                      value="used"
+                                                />
                                                 Used
                                           </label>
                                     </fieldset>
