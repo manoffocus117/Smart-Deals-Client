@@ -17,7 +17,7 @@ const Create_product = () => {
             const form = event.target;
 
             const product_title = form.product_title.value;
-            const category = form.category.value;
+            const category = category_value;
             const min_price = form.min_price.value;
             const max_price = form.max_price.value;
             const condition_new = form.condition_new.value;
@@ -49,10 +49,13 @@ const Create_product = () => {
                         className="fieldset bg-white w-80 md:w-200 border-base-300 rounded-box border p-10 space-y-2"
                   >
                         {/* product name & category field */}
-                        <fieldset className="fieldset flex">
+                        <fieldset className="fieldset flex flex-col md:flex-row">
                               {/* product name */}
                               <fieldset className="fieldset w-full">
-                                    <label className="label" htmlFor="title">
+                                    <label
+                                          className="label font-medium text-black"
+                                          htmlFor="title"
+                                    >
                                           Title
                                     </label>
                                     <input
@@ -65,9 +68,13 @@ const Create_product = () => {
                               </fieldset>
                               {/* product category */}
                               <fieldset className="fieldset w-full">
-                                    <label htmlFor="category">Category</label>
+                                    <label
+                                          className="font-medium"
+                                          htmlFor="category"
+                                    >
+                                          Category
+                                    </label>
                                     <select
-                                          name="category"
                                           id="category"
                                           onChange={handle_category_change}
                                           value={category_value}
@@ -92,11 +99,11 @@ const Create_product = () => {
                         </fieldset>
 
                         {/* min price & max price field */}
-                        <fieldset className="fieldset flex">
+                        <fieldset className="fieldset flex flex-col md:flex-row">
                               {/* min price */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="min-price"
                                     >
                                           Min Price
@@ -112,7 +119,7 @@ const Create_product = () => {
                               {/* max price */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="max-price"
                                     >
                                           Max Price
@@ -128,10 +135,12 @@ const Create_product = () => {
                         </fieldset>
 
                         {/* product condition & usage field */}
-                        <fieldset className="fieldset flex items-center">
+                        <fieldset className="fieldset flex flex-col md:flex-row items-center">
                               {/* product condition */}
                               <fieldset className="w-full flex flex-col gap-2">
-                                    <label>Product Condition</label>
+                                    <label className="font-medium">
+                                          Product Condition
+                                    </label>
                                     {/* condition brand new & used */}
                                     <fieldset className="flex items-center gap-2 w-full">
                                           {/* brand new radio */}
@@ -167,7 +176,7 @@ const Create_product = () => {
                               {/* product usage time */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="product-usage"
                                     >
                                           Product Usage Time
@@ -184,7 +193,9 @@ const Create_product = () => {
 
                         {/* product image url field */}
                         <fieldset className="fieldset w-full">
-                              <label htmlFor="">Product Image URL</label>
+                              <label className="font-medium" htmlFor="">
+                                    Product Image URL
+                              </label>
                               <label className="input w-full outline-none">
                                     <input
                                           name="product_image_url"
@@ -198,11 +209,11 @@ const Create_product = () => {
                         </fieldset>
 
                         {/* seller name & email field */}
-                        <fieldset className="fieldset flex">
+                        <fieldset className="fieldset flex flex-col md:flex-row">
                               {/* seller name */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="seller-name"
                                     >
                                           Seller Name
@@ -218,7 +229,7 @@ const Create_product = () => {
                               {/* seller email */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="seller-email"
                                     >
                                           Seller Email
@@ -234,11 +245,11 @@ const Create_product = () => {
                         </fieldset>
 
                         {/* seller contact & image url field */}
-                        <fieldset className="fieldset flex">
+                        <fieldset className="fieldset flex flex-col md:flex-row">
                               {/* seller number */}
                               <fieldset className="fieldset w-full">
                                     <label
-                                          className="label"
+                                          className="label font-medium text-black"
                                           htmlFor="seller-contact"
                                     >
                                           Seller Contact
@@ -253,7 +264,9 @@ const Create_product = () => {
                               </fieldset>
                               {/* seller image url */}
                               <fieldset className="fieldset w-full">
-                                    <label htmlFor="">Seller Image URL</label>
+                                    <label className="font-medium" htmlFor="">
+                                          Seller Image URL
+                                    </label>
                                     <label className="input w-full outline-none">
                                           <input
                                                 name="seller_image_url"
@@ -269,9 +282,12 @@ const Create_product = () => {
 
                         {/* seller location field */}
                         <fieldset className="fieldset w-full">
-                              <label htmlFor="">Location</label>
+                              <label className="font-medium" htmlFor="location">
+                                    Location
+                              </label>
                               <input
                                     name="seller_location"
+                                    id="location"
                                     type="text"
                                     className="input w-full outline-none"
                                     placeholder="Street, City, Country"
@@ -280,13 +296,13 @@ const Create_product = () => {
 
                         {/* product description field */}
                         <fieldset className="fieldset w-full">
-                              <legend className="fieldset-legend">
+                              <legend className="fieldset-legend font-medium">
                                     Simple Description about your Product
                               </legend>
                               <textarea
                                     name="product_description"
                                     className="textarea h-24 w-full outline-none"
-                                    placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate nostrum autem ipsum sequi ab"
+                                    placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate nostrum autem"
                               ></textarea>
                         </fieldset>
 
