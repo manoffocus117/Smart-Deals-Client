@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 import { Auth_context } from "../context/Auth_context";
@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 const Create_product = () => {
       // state for category option value
       const [category_value, set_category_value] = useState("");
+
+      // user data form auth context
+      const { user } = use(Auth_context);
 
       // handler for category option value
       const handle_category_change = (event) => {
@@ -99,6 +102,7 @@ const Create_product = () => {
                                           id="title"
                                           className="input w-full outline-none"
                                           placeholder="Name of Product"
+                                          required
                                     />
                               </fieldset>
                               {/* product category */}
@@ -114,6 +118,7 @@ const Create_product = () => {
                                           onChange={handle_category_change}
                                           value={category_value}
                                           className="select w-full outline-none"
+                                          required
                                     >
                                           <option value="">
                                                 Select a Category
@@ -149,6 +154,7 @@ const Create_product = () => {
                                           id="min-price"
                                           className="input w-full outline-none"
                                           placeholder="Min Price"
+                                          required
                                     />
                               </fieldset>
                               {/* max price */}
@@ -165,6 +171,7 @@ const Create_product = () => {
                                           id="max-price"
                                           className="input w-full outline-none"
                                           placeholder="Max Price"
+                                          required
                                     />
                               </fieldset>
                         </fieldset>
@@ -188,6 +195,7 @@ const Create_product = () => {
                                                       name="condition"
                                                       className="radio"
                                                       value="new"
+                                                      required
                                                 />
                                                 Brand New
                                           </label>
@@ -201,6 +209,7 @@ const Create_product = () => {
                                                       name="condition"
                                                       className="radio"
                                                       value="used"
+                                                      required
                                                 />
                                                 Used
                                           </label>
@@ -220,6 +229,7 @@ const Create_product = () => {
                                           id="product-usage"
                                           className="input w-full outline-none"
                                           placeholder="e.g. 1 year 3 month"
+                                          required
                                     />
                               </fieldset>
                         </fieldset>
@@ -237,6 +247,7 @@ const Create_product = () => {
                                           defaultValue="https://"
                                           pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                                           title="Must be valid URL"
+                                          required
                                     />
                               </label>
                         </fieldset>
@@ -257,6 +268,8 @@ const Create_product = () => {
                                           id="seller-name"
                                           className="input w-full outline-none"
                                           placeholder="Name"
+                                          defaultValue={user?.displayName}
+                                          readOnly
                                     />
                               </fieldset>
                               {/* seller email */}
@@ -273,6 +286,8 @@ const Create_product = () => {
                                           id="seller-email"
                                           className="input w-full outline-none"
                                           placeholder="Email"
+                                          defaultValue={user?.email}
+                                          readOnly
                                     />
                               </fieldset>
                         </fieldset>
@@ -293,6 +308,7 @@ const Create_product = () => {
                                           id="seller-contact"
                                           className="input w-full outline-none"
                                           placeholder="01234567890"
+                                          defaultValue={user?.phoneNumber}
                                     />
                               </fieldset>
                               {/* seller image url */}
@@ -305,7 +321,8 @@ const Create_product = () => {
                                                 name="seller_image_url"
                                                 type="url"
                                                 placeholder="https://"
-                                                defaultValue="https://"
+                                                defaultValue={user?.photoURL}
+                                                readOnly
                                                 pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                                                 title="Must be valid URL"
                                           />
@@ -324,6 +341,7 @@ const Create_product = () => {
                                     type="text"
                                     className="input w-full outline-none"
                                     placeholder="Street, City, Country"
+                                    required
                               />
                         </fieldset>
 
@@ -336,6 +354,7 @@ const Create_product = () => {
                                     name="product_description"
                                     className="textarea h-24 w-full outline-none"
                                     placeholder="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate nostrum autem"
+                                    required
                               ></textarea>
                         </fieldset>
 
