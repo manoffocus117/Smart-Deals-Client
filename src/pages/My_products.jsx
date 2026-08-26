@@ -18,15 +18,69 @@ const My_products = () => {
       return (
             <section className="w-11/12 mx-auto py-32.5">
                   <h1 className="w-full text-5xl text-center font-bold mb-10">
-                        My <span className="primary-color">Products</span>
+                        My Products:{" "}
+                        <span className="primary-color">
+                              {my_products.length}
+                        </span>
                   </h1>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 items-center space-y-8">
-                        {my_products.map((product) => (
-                              <Product_card
-                                    key={product._id}
-                                    product={product}
-                              />
-                        ))}
+                  <div className="overflow-x-auto">
+                        <table className="table">
+                              {/* head */}
+                              <thead>
+                                    <tr>
+                                          <th>SL No</th>
+                                          <th>Image</th>
+                                          <th>Product Name</th>
+                                          <th>Category</th>
+                                          <th>Price</th>
+                                          <th>Status</th>
+                                          <th className="w-70">Actions</th>
+                                    </tr>
+                              </thead>
+                              <tbody>
+                                    {/* row 1 */}
+                                    {my_products.map((product, index) => (
+                                          <tr key={product._id}>
+                                                <td>{index + 1}</td>
+                                                <td>
+                                                      <img
+                                                            src={product.image}
+                                                            alt={product.title}
+                                                            className="h-12 w-12 rounded-full"
+                                                      />
+                                                </td>
+                                                <td>{product.title}</td>
+                                                <td>{product.category}</td>
+                                                <td>
+                                                      <span>&#2547;</span>{" "}
+                                                      <span>
+                                                            {product.price_min}
+                                                      </span>{" "}
+                                                      -{" "}
+                                                      <span>
+                                                            {product.price_max}
+                                                      </span>
+                                                </td>
+                                                <td>
+                                                      <span className="badge badge-warning">
+                                                            {product.status}
+                                                      </span>
+                                                </td>
+                                                <td className="w-70 flex flex-row gap-3 mt-2">
+                                                      <button className="btn btn-sm btn-outline btn-primary">
+                                                            Edit
+                                                      </button>
+                                                      <button className="btn btn-sm btn-outline btn-error">
+                                                            Delete
+                                                      </button>
+                                                      <button className="btn btn-sm btn-outline btn-success">
+                                                            Make Sold
+                                                      </button>
+                                                </td>
+                                          </tr>
+                                    ))}
+                              </tbody>
+                        </table>
                   </div>
             </section>
       );
