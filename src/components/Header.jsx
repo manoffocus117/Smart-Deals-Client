@@ -52,7 +52,6 @@ const Header = () => {
                               text: error.message,
                               icon: "error",
                         });
-                        alert(error.message);
                   });
       };
 

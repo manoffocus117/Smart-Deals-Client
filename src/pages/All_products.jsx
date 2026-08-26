@@ -9,7 +9,7 @@ const All_products = () => {
                   <h1 className="w-full text-5xl text-center font-bold mb-10">
                         All <span className="primary-color">Products</span>
                   </h1>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 items-center space-y-8">
+                  <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 items-stretch justify-center gap-5">
                         {products.map((product) => (
                               <Product_card
                                     key={product._id}
