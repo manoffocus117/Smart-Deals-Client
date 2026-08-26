@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import { Link, useNavigate } from "react-router";
 import { Auth_context } from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Login = () => {
       const { sign_in_with_google } = use(Auth_context);
@@ -18,11 +19,19 @@ const Login = () => {
       const handle_google_sign_in = () => {
             sign_in_with_google()
                   .then((result) => {
-                        alert("user sign in successful");
+                        Swal.fire({
+                              title: "Success",
+                              text: "You have login successfully!",
+                              icon: "success",
+                        });
                         navigate("/");
                   })
                   .catch((error) => {
-                        alert(error.message);
+                        Swal.fire({
+                              title: "Good job!",
+                              text: error.message,
+                              icon: "error",
+                        });
                   });
       };
 

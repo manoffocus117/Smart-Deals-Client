@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { RiMenu5Fill } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { Auth_context } from "../context/Auth_context";
+import Swal from "sweetalert2";
 
 const Header = () => {
       // user
@@ -39,9 +40,18 @@ const Header = () => {
       const handle_sign_out = () => {
             sign_out_user()
                   .then((result) => {
-                        alert("user signed out successfully");
+                        Swal.fire({
+                              title: "Success!",
+                              text: "You have signout successfully",
+                              icon: "success",
+                        });
                   })
                   .catch((error) => {
+                        Swal.fire({
+                              title: "Error",
+                              text: error.message,
+                              icon: "error",
+                        });
                         alert(error.message);
                   });
       };
