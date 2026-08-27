@@ -8,7 +8,7 @@ import My_bids from "../pages/My_bids";
 import Create_product from "../pages/Create_product";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Private_route from "../providers/Private_route";
+import Private_route from "./Private_route";
 import Product_details from "./../pages/Product_details";
 import Loading from "../components/Loading";
 
