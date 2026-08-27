@@ -21,7 +21,7 @@ const My_bids = () => {
                         .then((res) => res.json())
                         .then((data) => set_bids(data));
             }
-      }, [user?.email]);
+      }, [user]);
 
       const handle_remove_bid = (_id) => {
             Swal.fire({

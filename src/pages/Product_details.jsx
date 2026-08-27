@@ -105,10 +105,14 @@ const Product_details = () => {
 
       // getting bids api for a product
       useEffect(() => {
-            fetch(`http://localhost:3000/products/bids/${product_id}`)
+            fetch(`http://localhost:3000/products/bids/${product_id}`, {
+                  headers: {
+                        authorization: `Bearer ${user.accessToken}`,
+                  },
+            })
                   .then((res) => res.json())
                   .then((data) => set_product_bids(data));
-      }, [product_id]);
+      }, [product_id, user]);
 
       return (
             <>

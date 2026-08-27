@@ -34,7 +34,11 @@ const router = createBrowserRouter([
                                     `http://localhost:3000/products/${params.id}`,
                               ),
                         hydrateFallbackElement: <Loading />,
-                        Component: Product_details,
+                        element: (
+                              <Private_route>
+                                    <Product_details />
+                              </Private_route>
+                        ),
                   },
                   {
                         path: "my-products",
