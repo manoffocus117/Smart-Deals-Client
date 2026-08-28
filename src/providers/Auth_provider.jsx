@@ -62,9 +62,16 @@ const Auth_provider = ({ children }) => {
                               body: JSON.stringify(logged_user),
                         })
                               .then((res) => res.json())
-                              .then((data) =>
-                                    console.log("after getting token", data),
-                              );
+                              .then((data) => {
+                                    console.log(
+                                          "after getting token",
+                                          data.token,
+                                    );
+                                    localStorage.setItem(
+                                          "auth-token",
+                                          data.token,
+                                    );
+                              });
                   }
                   set_loading(false);
             });
