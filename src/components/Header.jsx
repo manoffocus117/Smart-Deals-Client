@@ -1,10 +1,13 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { RiMenu5Fill } from "react-icons/ri";
 import { Link, NavLink } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
 
 const Header = () => {
+      // scroll effect
+      const [is_scrolled, set_is_scrolled] = useState(false);
+
       // user
       const { user, sign_out_user } = use(Auth_context);
 
@@ -36,6 +39,15 @@ const Header = () => {
             </>
       );
 
+      // handler for scroll effect
+      useEffect(() => {
+            const handle_scroll = () => {
+                  set_is_scrolled(window.scrollY > 100);
+            };
+            window.addEventListener("scroll", handle_scroll);
+            return () => window.removeEventListener("scroll", handle_scroll);
+      }, []);
+
       // handler for sign out user
       const handle_sign_out = () => {
             sign_out_user()
@@ -56,8 +68,10 @@ const Header = () => {
       };
 
       return (
-            <header className="w-11/12 mx-auto py-2">
-                  <nav className="navbar p-0">
+            <header
+                  className={`w-full py-2 fixed top-0 z-10 ${is_scrolled ? "navbar-blur" : ""}`}
+            >
+                  <nav className="navbar w-11/12 mx-auto p-0">
                         <div className="navbar-start">
                               <Link
                                     to={"/"}
