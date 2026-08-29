@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Latest_products = ({ latest_products_promise }) => {
       const products = use(latest_products_promise);
       return (
-            <section className="w-11/12 mx-auto mb-36 flex flex-col items-center">
+            <section className="w-11/12 mx-auto mb-32.5 flex flex-col items-center">
                   <h1 className="text-5xl text-center font-bold py-10">
                         Recent <span className="primary-color">Products</span>
                   </h1>

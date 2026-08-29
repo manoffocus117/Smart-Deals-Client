@@ -10,7 +10,7 @@ const latest_products_promise = fetch(
 const Hero = () => {
       return (
             <>
-                  <section className="w-screen h-screen relative mb-36">
+                  <section className="w-screen h-screen relative mb-32.5">
                         <img
                               src={Background}
                               alt=""

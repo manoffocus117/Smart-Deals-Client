@@ -72,7 +72,7 @@ const Create_product = () => {
                   );
       };
       return (
-            <section className="w-11/12 mx-auto py-30 flex flex-col items-center justify-center gap-10">
+            <section className="w-11/12 mx-auto py-32.5 flex flex-col items-center justify-center gap-10">
                   <Link
                         to={"/all-products"}
                         className="flex items-center gap-2"
