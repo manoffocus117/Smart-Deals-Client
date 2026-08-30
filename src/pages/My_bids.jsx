@@ -9,17 +9,52 @@ const My_bids = () => {
       // state for holding bids data
       const [bids, set_bids] = useState([]);
 
-      // loading user bids data
+      // loading user bids data verify by firebase
+      // useEffect(() => {
+      //       // checking user is login
+      //       if (user?.email) {
+      //             fetch(`http://localhost:3000/bids?email=${user.email}`, {
+      //                   headers: {
+      //                         authorization: `Bearer ${user.accessToken}`,
+      //                   },
+      //             })
+      //                   .then((res) => {
+      //                         if (!res.ok) {
+      //                               throw new Error(
+      //                                     `Request failed: ${res.status}`,
+      //                               );
+      //                         }
+      //                         return res.json();
+      //                   })
+      //                   .then((data) => set_bids(data))
+      //                   .catch((err) => {
+      //                         console.error(err);
+      //                         set_bids([]);
+      //                   });
+      //       }
+      // }, [user]);
+
+      // loading user data verify by jwt
       useEffect(() => {
-            // checking user is login
             if (user?.email) {
                   fetch(`http://localhost:3000/bids?email=${user.email}`, {
                         headers: {
-                              authorization: `Bearer ${user.accessToken}`,
+                              authorization: `Bearer ${localStorage.getItem("auth-token")}`,
                         },
                   })
-                        .then((res) => res.json())
-                        .then((data) => set_bids(data));
+                        .then((res) => {
+                              if (!res.ok) {
+                                    throw new Error(
+                                          `Request failed: ${res.status}`,
+                                    );
+                              }
+                              return res.json();
+                        })
+                        .then((data) => set_bids(data))
+                        .catch((err) => {
+                              console.error(err);
+                              set_bids([]);
+                        });
             }
       }, [user]);
 
@@ -58,7 +93,7 @@ const My_bids = () => {
       };
 
       return (
-            <section className="w-11/12 mx-auto pb-32.5">
+            <section className="w-11/12 mx-auto py-32.5">
                   <h1 className="text-5xl font-bold mb-10 capitalize text-center">
                         My Bids :{" "}
                         <span className="primary-color">{bids.length}</span>
