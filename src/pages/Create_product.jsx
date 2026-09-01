@@ -5,15 +5,16 @@ import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
 import axios from "axios";
 import use_auth from "../hooks/use_auth";
+import use_axios from "../hooks/use_axios";
 
 const Create_product = () => {
+      const axios_instance = use_axios();
       // state for category option value
       const [category_value, set_category_value] = useState("");
 
       // user data form auth context
       // const { user } = use(Auth_context);
       const { user } = use_auth();
-      console.log("user", user);
 
       // handler for category option value
       const handle_category_change = (event) => {
@@ -77,24 +78,21 @@ const Create_product = () => {
             //       );
 
             // creating product using axios
-            axios.post("http://localhost:3000/products", new_product).then(
-                  (data) => {
-                        console.log("after axios post request", data);
-                        if (data.data.insertedId) {
-                              Swal.fire({
-                                    title: "Success",
-                                    text: "Your product has been created successfully!",
-                                    icon: "success",
-                              });
-                        } else {
-                              Swal.fire({
-                                    title: "Error",
-                                    text: "Failed to create product!",
-                                    icon: "error",
-                              });
-                        }
-                  },
-            );
+            axios_instance.post("/products", new_product).then((data) => {
+                  if (data.data.insertedId) {
+                        Swal.fire({
+                              title: "Success",
+                              text: "Your product has been created successfully!",
+                              icon: "success",
+                        });
+                  } else {
+                        Swal.fire({
+                              title: "Error",
+                              text: data.data.message,
+                              icon: "error",
+                        });
+                  }
+            });
       };
       return (
             <section className="w-11/12 mx-auto py-32.5 flex flex-col items-center justify-center gap-10">
