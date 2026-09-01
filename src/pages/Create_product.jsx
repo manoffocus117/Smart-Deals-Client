@@ -4,13 +4,16 @@ import { Link } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
 import axios from "axios";
+import use_auth from "../hooks/use_auth";
 
 const Create_product = () => {
       // state for category option value
       const [category_value, set_category_value] = useState("");
 
       // user data form auth context
-      const { user } = use(Auth_context);
+      // const { user } = use(Auth_context);
+      const { user } = use_auth();
+      console.log("user", user);
 
       // handler for category option value
       const handle_category_change = (event) => {
@@ -29,11 +32,11 @@ const Create_product = () => {
             const condition = form.condition.value;
             const usage_time = form.usage_time.value;
             const product_image_url = form.product_image_url.value;
-            const seller_name = form.seller_name.value;
-            const seller_email = form.seller_email.value;
-            const seller_number = form.seller_number.value;
-            const seller_image_url = form.seller_image_url.value;
-            const seller_location = form.seller_location.value;
+            const seller_name = user?.displayName;
+            const seller_email = user?.email;
+            const seller_number = user?.phoneNumber;
+            const seller_image_url = user?.photoURL;
+            const seller_location = user?.location;
             const product_description = form.product_description.value;
 
             event.target.reset();
@@ -290,7 +293,7 @@ const Create_product = () => {
                                           id="seller-name"
                                           className="input w-full outline-none"
                                           placeholder="Name"
-                                          defaultValue={user?.displayName}
+                                          value={user?.displayName}
                                           readOnly
                                     />
                               </fieldset>
@@ -308,7 +311,7 @@ const Create_product = () => {
                                           id="seller-email"
                                           className="input w-full outline-none"
                                           placeholder="Email"
-                                          defaultValue={user?.email}
+                                          value={user?.email}
                                           readOnly
                                     />
                               </fieldset>
@@ -330,7 +333,8 @@ const Create_product = () => {
                                           id="seller-contact"
                                           className="input w-full outline-none"
                                           placeholder="01234567890"
-                                          defaultValue={user?.phoneNumber}
+                                          value={user?.phoneNumber}
+                                          required
                                     />
                               </fieldset>
                               {/* seller image url */}
@@ -343,7 +347,7 @@ const Create_product = () => {
                                                 name="seller_image_url"
                                                 type="url"
                                                 placeholder="https://"
-                                                defaultValue={user?.photoURL}
+                                                value={user?.photoURL}
                                                 readOnly
                                                 pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$"
                                                 title="Must be valid URL"
