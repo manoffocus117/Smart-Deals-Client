@@ -3,12 +3,13 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
-import axios from "axios";
 import use_auth from "../hooks/use_auth";
-import use_axios from "../hooks/use_axios";
+import use_axios_secure from "../hooks/use_axios_secure";
 
 const Create_product = () => {
-      const axios_instance = use_axios();
+      // const axios_instance = use_axios();
+      const axios_secure = use_axios_secure();
+
       // state for category option value
       const [category_value, set_category_value] = useState("");
 
@@ -78,7 +79,7 @@ const Create_product = () => {
             //       );
 
             // creating product using axios
-            axios_instance.post("/products", new_product).then((data) => {
+            axios_secure.post("/products", new_product).then((data) => {
                   if (data.data.insertedId) {
                         Swal.fire({
                               title: "Success",
