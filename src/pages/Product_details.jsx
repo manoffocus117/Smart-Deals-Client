@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link, useLoaderData } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Product_details = () => {
       const product = useLoaderData();
@@ -104,15 +105,24 @@ const Product_details = () => {
       };
 
       // getting bids api for a product
+      // useEffect(() => {
+      //       fetch(`http://localhost:3000/products/bids/${product_id}`, {
+      //             headers: {
+      //                   authorization: `Bearer ${user.accessToken}`,
+      //             },
+      //       })
+      //             .then((res) => res.json())
+      //             .then((data) => set_product_bids(data));
+      // }, [product_id, user]);
+
+      // loading bids data for a product using axios
       useEffect(() => {
-            fetch(`http://localhost:3000/products/bids/${product_id}`, {
-                  headers: {
-                        authorization: `Bearer ${user.accessToken}`,
+            axios.get(`http://localhost:3000/products/bids/${product_id}`).then(
+                  (data) => {
+                        console.log("after axios get request", data);
                   },
-            })
-                  .then((res) => res.json())
-                  .then((data) => set_product_bids(data));
-      }, [product_id, user]);
+            );
+      }, [product_id]);
 
       return (
             <>
