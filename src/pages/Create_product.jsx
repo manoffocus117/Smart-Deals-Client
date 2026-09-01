@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 import { Auth_context } from "../context/Auth_context";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Create_product = () => {
       // state for category option value
@@ -55,21 +56,42 @@ const Create_product = () => {
                   seller_contact: seller_number,
             };
 
-            fetch("http://localhost:3000/products", {
-                  method: "POST",
-                  headers: {
-                        "content-type": "application/json",
+            // creating product using fetch
+            // fetch("http://localhost:3000/products", {
+            //       method: "POST",
+            //       headers: {
+            //             "content-type": "application/json",
+            //       },
+            //       body: JSON.stringify(new_product),
+            // })
+            //       .then((res) => res.json())
+            //       .then((data) =>
+            //             Swal.fire({
+            //                   title: "Success",
+            //                   text: "Your product has been created successfully!",
+            //                   icon: "success",
+            //             }),
+            //       );
+
+            // creating product using axios
+            axios.post("http://localhost:3000/products", new_product).then(
+                  (data) => {
+                        console.log("after axios post request", data);
+                        if (data.data.insertedId) {
+                              Swal.fire({
+                                    title: "Success",
+                                    text: "Your product has been created successfully!",
+                                    icon: "success",
+                              });
+                        } else {
+                              Swal.fire({
+                                    title: "Error",
+                                    text: "Failed to create product!",
+                                    icon: "error",
+                              });
+                        }
                   },
-                  body: JSON.stringify(new_product),
-            })
-                  .then((res) => res.json())
-                  .then((data) =>
-                        Swal.fire({
-                              title: "Success",
-                              text: "Your product has been created successfully!",
-                              icon: "success",
-                        }),
-                  );
+            );
       };
       return (
             <section className="w-11/12 mx-auto py-32.5 flex flex-col items-center justify-center gap-10">
