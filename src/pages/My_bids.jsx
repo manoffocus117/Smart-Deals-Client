@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from "react";
 import { Auth_context } from "./../context/Auth_context";
 import Swal from "sweetalert2";
+import use_axios_secure from "../hooks/use_axios_secure";
 
 const My_bids = () => {
       // user data
@@ -8,6 +9,9 @@ const My_bids = () => {
 
       // state for holding bids data
       const [bids, set_bids] = useState([]);
+
+      // axios_secure instance
+      const axios_secure = use_axios_secure();
 
       // loading user bids data verify by firebase
       // useEffect(() => {
@@ -35,28 +39,35 @@ const My_bids = () => {
       // }, [user]);
 
       // loading user data verify by jwt
+      // useEffect(() => {
+      //       if (user?.email) {
+      //             fetch(`http://localhost:3000/bids?email=${user.email}`, {
+      //                   headers: {
+      //                         authorization: `Bearer ${localStorage.getItem("auth-token")}`,
+      //                   },
+      //             })
+      //                   .then((res) => {
+      //                         if (!res.ok) {
+      //                               throw new Error(
+      //                                     `Request failed: ${res.status}`,
+      //                               );
+      //                         }
+      //                         return res.json();
+      //                   })
+      //                   .then((data) => set_bids(data))
+      //                   .catch((err) => {
+      //                         console.error(err);
+      //                         set_bids([]);
+      //                   });
+      //       }
+      // }, [user]);
+
+      // loading data using axios_secure
       useEffect(() => {
-            if (user?.email) {
-                  fetch(`http://localhost:3000/bids?email=${user.email}`, {
-                        headers: {
-                              authorization: `Bearer ${localStorage.getItem("auth-token")}`,
-                        },
-                  })
-                        .then((res) => {
-                              if (!res.ok) {
-                                    throw new Error(
-                                          `Request failed: ${res.status}`,
-                                    );
-                              }
-                              return res.json();
-                        })
-                        .then((data) => set_bids(data))
-                        .catch((err) => {
-                              console.error(err);
-                              set_bids([]);
-                        });
-            }
-      }, [user]);
+            axios_secure.get(`bids?email=${user.email}`).then((data) => {
+                  set_bids(data.data);
+            });
+      }, [user, axios_secure]);
 
       const handle_remove_bid = (_id) => {
             Swal.fire({
