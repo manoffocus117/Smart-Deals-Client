@@ -7,7 +7,7 @@ import use_auth from "../hooks/use_auth";
 import use_axios_secure from "../hooks/use_axios_secure";
 
 const Create_product = () => {
-      // const axios_instance = use_axios();
+      // axios interceptor
       const axios_secure = use_axios_secure();
 
       // state for category option value
