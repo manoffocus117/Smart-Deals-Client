@@ -23,7 +23,10 @@ const router = createBrowserRouter([
                   },
                   {
                         path: "all-products",
-                        loader: () => fetch("http://localhost:3000/products"),
+                        loader: () =>
+                              fetch(
+                                    "https://smart-deals-server-inky.vercel.app/products",
+                              ),
                         hydrateFallbackElement: <Loading />,
                         Component: All_products,
                   },
@@ -31,7 +34,7 @@ const router = createBrowserRouter([
                         path: "product-details/:id",
                         loader: ({ params }) =>
                               fetch(
-                                    `http://localhost:3000/products/${params.id}`,
+                                    `https://smart-deals-server-inky.vercel.app/products/${params.id}`,
                               ),
                         hydrateFallbackElement: <Loading />,
                         element: (

@@ -14,8 +14,9 @@ const use_axios_secure = () => {
             // set token in the header for all the api calls using interceptors
             const request_interceptor = axios_instance.interceptors.request.use(
                   (config) => {
-                        if (user?.accessToken) {
-                              config.headers.authorization = `Bearer ${user?.accessToken}`;
+                        const token = localStorage.getItem("auth-token");
+                        if (token) {
+                              config.headers.authorization = `Bearer ${token}`;
                         }
                         return config;
                   },

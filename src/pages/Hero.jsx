@@ -5,7 +5,7 @@ import Latest_products from "../components/Latest_products";
 import { Link } from "react-router";
 
 const latest_products_promise = fetch(
-      "http://localhost:3000/latest-products",
+      "https://smart-deals-server-inky.vercel.app/latest-products",
 ).then((res) => res.json());
 const Hero = () => {
       return (

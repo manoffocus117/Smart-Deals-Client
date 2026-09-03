@@ -62,7 +62,7 @@ const Create_product = () => {
             };
 
             // creating product using fetch
-            // fetch("http://localhost:3000/products", {
+            // fetch("https://smart-deals-server-inky.vercel.app/products", {
             //       method: "POST",
             //       headers: {
             //             "content-type": "application/json",

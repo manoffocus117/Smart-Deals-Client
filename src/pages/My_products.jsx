@@ -10,7 +10,9 @@ const My_products = () => {
       const [my_products, set_my_products] = useState([]);
 
       useEffect(() => {
-            fetch(`http://localhost:3000/products?email=${user.email}`)
+            fetch(
+                  `https://smart-deals-server-inky.vercel.app/products?email=${user.email}`,
+            )
                   .then((res) => res.json())
                   .then((data) => set_my_products(data));
       }, [user?.email]);

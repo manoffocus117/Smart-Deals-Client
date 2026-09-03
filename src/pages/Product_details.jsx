@@ -68,7 +68,7 @@ const Product_details = () => {
             };
 
             // send bids data to the server/database
-            fetch("http://localhost:3000/bids", {
+            fetch("https://smart-deals-server-inky.vercel.app/bids", {
                   method: "POST",
                   headers: {
                         "content-type": "application/json",
@@ -106,7 +106,7 @@ const Product_details = () => {
 
       // getting bids api for a product
       // useEffect(() => {
-      //       fetch(`http://localhost:3000/products/bids/${product_id}`, {
+      //       fetch(`https://smart-deals-server-inky.vercel.app/products/bids/${product_id}`, {
       //             headers: {
       //                   authorization: `Bearer ${user.accessToken}`,
       //             },
@@ -117,11 +117,11 @@ const Product_details = () => {
 
       // loading bids data for a product using axios
       useEffect(() => {
-            axios.get(`http://localhost:3000/products/bids/${product_id}`).then(
-                  (data) => {
-                        console.log("after axios get request", data);
-                  },
-            );
+            axios.get(
+                  `https://smart-deals-server-inky.vercel.app/products/bids/${product_id}`,
+            ).then((data) => {
+                  console.log("after axios get request", data);
+            });
       }, [product_id]);
 
       return (

@@ -29,13 +29,16 @@ const Register = () => {
                         };
 
                         // create user in the database
-                        fetch("http://localhost:3000/users", {
-                              method: "POST",
-                              headers: {
-                                    "content-type": "application/json",
+                        fetch(
+                              "https://smart-deals-server-inky.vercel.app/users",
+                              {
+                                    method: "POST",
+                                    headers: {
+                                          "content-type": "application/json",
+                                    },
+                                    body: JSON.stringify(new_user),
                               },
-                              body: JSON.stringify(new_user),
-                        })
+                        )
                               .then((res) => res.json())
                               .then((data) => alert("data after added", data));
                         navigate("/");

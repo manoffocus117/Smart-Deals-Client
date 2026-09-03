@@ -54,13 +54,16 @@ const Auth_provider = ({ children }) => {
                   const logged_user = { email: current_user?.email };
 
                   if (current_user) {
-                        fetch("http://localhost:3000/get-token", {
-                              method: "POST",
-                              headers: {
-                                    "content-type": "application/json",
+                        fetch(
+                              "https://smart-deals-server-inky.vercel.app/get-token",
+                              {
+                                    method: "POST",
+                                    headers: {
+                                          "content-type": "application/json",
+                                    },
+                                    body: JSON.stringify(logged_user),
                               },
-                              body: JSON.stringify(logged_user),
-                        })
+                        )
                               .then((res) => res.json())
                               .then((data) =>
                                     localStorage.setItem(

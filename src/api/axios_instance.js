@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axios_instance = axios.create({
-      baseURL: "http://localhost:3000",
+      baseURL: "https://smart-deals-server-inky.vercel.app",
 });
 
 export default axios_instance;
